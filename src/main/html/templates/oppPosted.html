@@ -1,0 +1,73 @@
+<div ng-controller="OrgPostGetController">
+<div class="loading-spiner-holder" data-loading ></div>
+    <div class="section">
+        <div class="left-section left-section-inner">
+            <div class=" block bs-example">
+
+
+
+
+                <div class="acc-tables">
+                    <h4>Posted Opportunities<!-- <span class="close">X</span><a class="view-all-candi" href="">View All Candidates</a>--></h4>
+                    <p></p>
+                    <!--<div class="bottom-btns">
+                            <a class="btn btn-warning btn-sm" role="button" href="#/home/email-template/write-template"><i class="fa fa-pencil"></i> Write New Template</a>
+                    <!--<button ng-click="addRow()" class="btn btn-warning btn-sm">Add Template</button>
+                    <button ng-click="sendMail()" class="btn btn-warning btn-sm">Send Mail</button>
+                    <!--<button ng-click="selectionAlert()">Send Email</button>
+            </div>-->
+
+
+
+
+                    <table class="table datatable table-hover table-striped mdl-data-table cell-border" id="bootstrap-table" st-table="displayedCollection" st-safe-src="rowCollection">
+                        <thead align="center">
+                            <tr>
+
+                                <th>No.</th>
+                                <th class="center">Name</th>
+                                <th class="center">Type</th>
+                                <th class="center">Status</th>
+                                <th class="center">Posted On</th>
+                                <th class="center">Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr ng-repeat = "opportunity in opportunities track by $index">
+
+                                <td>{{$index + 1}}</td>
+                                <td class="center">{{opportunity.generalOpportunityFields.summary|| opportunity.mentorTypeFields.mentorSummary}}</td>
+                                <td class="center">{{opportunity.type}}</td>
+                                <td class="center">{{opportunity.status}}</td>
+                                <td class="center">{{getDateFormat(opportunity.creationDate) | date:'dd-MMM-yyyy'}}</td>
+                                <td class="center"><a role="button"ng-click="viewAppliedCandidates(opportunity.id)"><i class="fa fa-info-circle" ng-click="" title="Information" role="button"></i></a>
+                                     <a><i class="fa fa-pencil-square" ng-click="copyOpp(opportunity,'edit')" title="View/Edit" role="button"></i></a>
+                                    <a><i class="fa fa-copy" ng-click="copyOpp(opportunity,'copy')" title="Copy" role="button"></i></a>
+                                   <a href="#/home/save-as-template"><i class="fa fa-save" ng-click="saveAsEmail(opportunity)" title="Save as Email Template" role="button"></i></a>
+                                    <a role="button" href=""><i class="fa fa-trash-o" ng-click="postDeleteOpportunity(opportunity)" title="Delete" role="button"></i></a>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <div class="bottom-btns">
+                        <a class="btn btn-danger btn-md" role="button" href="#/home"><i class="fa fa-times"></i> Close</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <ng-include src="'templates/right-menu.html'"></ng-include>	
+       <ng-include src="'templates/footer.html'"></ng-include>
+    </div>
+
+</div>

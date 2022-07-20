@@ -1,0 +1,27 @@
+<!--<div class="banner inner-banner">
+	<h2 class="inner-head">organisations</h2>
+	<img src="images/inner-banner.png" class="box-shadow" alt="">
+</div>-->
+
+<div class="section">
+	<div class="left-section left-section-inner" ng-controller = "orgPostController">
+		<div class="loading-spiner-holder" data-loading ></div> 
+		<div>
+			<h2 class="inner-head">Post opportunities</h2>
+		</div>
+		<!-- 3 types of post opportunities for organisation-->
+		<ul id="tab_ul" class="tabs">
+			<li ng-repeat="postOpt in postOpts" >
+			<a  href="{{postOpt.template}}">{{postOpt.title}}</a></li>	
+		</ul>
+		
+			
+			<!--<p> 	name from backend is {{name}} </p>-->	 
+	</div>
+			
+
+
+	 <ng-include src="'templates/right-menu.html'"></ng-include>	
+         <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

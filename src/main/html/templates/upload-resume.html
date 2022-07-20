@@ -1,0 +1,29 @@
+<h1 class="button-back center" style="color: #fff"><strong><br>Upload Resume</strong></h1><br>
+<div class="profile-card profile-section section" style="padding: 15px 15px 15px 15px;" ng-controller="ResumeController">
+
+
+
+
+
+    <!--<div class="col-md-1">-->
+    <!--<div class="col-md-1">-->
+    <strong>Resume:</strong>
+    <!--</div>-->
+    <!--<div class="col-md-1">-->
+    <table class="table"><tr>
+            <td>
+                <!--<input type="file" name="resume" accept="application/pdf" file-model="myFile">-->
+                <label class="fileContainer btn btn-bitbucket">
+                   <i class="fa fa-folder-open" aria-hidden="true"></i>
+                    <input type="file" name="resume" accept="application/pdf" file-model="myFile" >
+                </label>
+                {{filename}}</td><td><button class="btn btn-success" ng-click = "uploadFile('/refer')">upload file</button> 
+
+                File format must be .pdf</td></tr></table>
+    <div align="right">   <a  href="#/refer"><button class="btn-sm btn-bitbucket">Skip</button></a></div>
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <div class="loading-spiner-holder" data-loading ></div>
+</div>

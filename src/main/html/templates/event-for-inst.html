@@ -1,0 +1,63 @@
+
+
+<div ng-controller="InstPostController">
+
+
+    <div>
+        <h4 class="inner-head">Event Invitation</h4>
+    </div>
+
+    <p></p>
+    <div class="search-form">
+
+        <form name="form">
+             <div align="right">
+                    <button type="reset" value="Reset" ng-click="clearAll();">Clear All</button></div><p></p>
+            <label>*Event Summary:</label>
+            <div ng-class="{ 'has-error': form.jobDescription.$touched && form.jobDescription.$invalid}">
+                <textarea class= "form-control" name="jobDescription" rows="5" cols="2" ng-model="summary" placeholder="Enter Summary" required=""></textarea>
+                <div class="help-block" ng-messages="form.jobDescription.$error" ng-if="form.jobDescription.$touched">
+                    <p ng-message="required">This field is required!</p>
+                </div>
+            </div>
+
+            <p></p>
+
+            <div>
+                <label>*Event Date:</label>
+                 <div class="row">
+
+                        <div class="col-md-12">
+                            <div  ng-class="{
+                                    'has-error'
+                                    : eventDateMessage}">
+                                <p class="input-group">
+                                    <input type="text" name="eventDate" ng-model='eventDate' class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+
+                                <p class="help-block" ng-show="eventDateMessage" >Event Date is Required!</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                
+                <p></p>
+
+            </div>
+            <div ng-include src="'templates/Part3.html'"></div>	
+            <input type="hidden" name="country" ng-model='$parent.type' ng-init="$parent.type = 'event'" value="Job">
+            <div class="form-footer">
+                <input type="submit" class="btn btn-primary"  value="Post Opportunity" ng-disabled="form.$invalid" ng-click="copyEventOpportunity(); postEventOpportunity()"><!--ng-disabled="form.$invalid"-->
+                <!--<i class="fa fa-upload"></i>-->
+                </input>
+            </div>	<p></p>	
+        </form>
+    </div>
+
+<div class="loading-spiner-holder" data-loading ></div>
+</div>
+

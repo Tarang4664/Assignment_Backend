@@ -1,0 +1,19 @@
+<!--<div class="banner inner-banner">
+        <h2 class="inner-head">organisations</h2>
+        <img src="images/inner-banner.png" class="box-shadow" alt="">
+</div>-->
+
+<div class="section">
+    <div class="left-section left-section-inner" ng-controller="searchoptController">
+        <!-- 3 types of tabs for search-->
+        <ul id="tab_ul" class="tabs">
+            <li class="tabcolor" ng-repeat="searchOpt in searchOpts"><a  href="{{searchOpt.template}}">{{searchOpt.title}}</a></li>
+
+        </ul>
+
+    </div>
+
+    <ng-include src="'templates/right-menu.html'"></ng-include>	
+ <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

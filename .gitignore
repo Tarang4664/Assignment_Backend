@@ -1,0 +1,17 @@
+*/.settings*
+.gradle/*
+build/*
+*.iws
+
+*.iml
+
+*.ipr
+
+fm-backend.iml
+
+fm-backend.ipr
+
+fm-backend.iws
+/bin
+.project
+.classpath

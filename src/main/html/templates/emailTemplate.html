@@ -1,0 +1,68 @@
+<div ng-controller="EmailTemplateController">
+
+    <div class="section">
+        <div class="left-section left-section-inner">
+            <div class="bs-example">
+
+
+
+
+                <div class="profile-section profile-card acc-tables">
+                    <h3>Email Templates <!-- <span class="close">X</span><a class="view-all-candi" href="">View All Candidates</a>--></h3>
+
+                    <div class="bottom-btns">
+                        <a class="btn btn-warning btn-sm" role="button" href="#/home/email-template/write-template"><i class="fa fa-pencil"></i> Write New Template</a>
+                        <!--<button ng-click="addRow()" class="btn btn-warning btn-sm">Add Template</button>
+                        <button ng-click="sendMail()" class="btn btn-warning btn-sm">Send Mail</button>-->
+                        <!--<button ng-click="selectionAlert()">Send Email</button>-->
+                    </div>
+
+
+
+                    <div class="table-responsive">
+                        <table class="table datatable table-hover table-striped mdl-data-table" id="bootstrap-table" st-table="displayedCollection" st-safe-src="rowCollection">
+                            <thead align="center">
+                                <tr>
+
+                                    <th>No.</th>
+                                    <th class="center">Name</th>
+                                    <th class="center">Date</th>
+                                    <th class="center">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat = "template in templates track by $index">
+
+                                    <!--<td><input type="checkbox"></td>-->
+                                    <td>{{$index + 1}}</td>
+                                    <td class="center">{{template.positionName}}</td>
+                                    <td class="center">{{getDateFormat(template.creationDate) | date:'dd-MMM-yyyy'}}</td>
+                                    <td class="center"><a  ng-click="editEmail(template)"><img src="images/edit.jpg" title="View/Edit" role="button"></img></a>
+                                        <a ng-href="mailto:?subject={{template.subject}}&body={{template.jobDescription + '%0A%0A%0A%0A' + template.signature + '%0A%0A%0A%0A sent from Midas Fusion%0A www.midasfusion.com'}}"><img src="images/message.jpg" title="Email" role="button"></img></a>
+                                        <!--<button ng-click="removeRow(template)" class="btn btn-danger btn-sm" >Delete</button>-->
+                                        <a role="button" ng-click="removeTemplate(template.id)" href=""><img src="images/delete.jpg"  title="Delete" role="button"></img></a>
+                                    </td>
+
+                                    <!--<td><div class="bottom-btns">
+                            <a class="uncheck-all" href="/html/#/home">Send</a>
+                    </div></td>-->
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="bottom-btns">
+                        <a class="btn btn-danger btn-md" role="button" href="#/home"><i class="fa fa-times"></i> Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-include src="'templates/right-menu.html'"></ng-include>	
+        <ng-include src="'templates/footer.html'"></ng-include>
+    </div>
+    <div class="loading-spiner-holder" data-loading ></div>
+</div>
+
+

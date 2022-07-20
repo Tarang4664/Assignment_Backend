@@ -1,0 +1,233 @@
+
+<div  ng-controller="OrgSearchResultController">
+    <div class="section">
+        <div class="left-section left-section-inner">
+            <form class="form-inline" name="form">
+                <div class="candi-list-header">
+                    <label class="v-separator">
+                        <input type="checkbox" class="check-box" ng-model="allCandidatesSelected" ng-change="selectAll()">
+                        Select All	
+                    </label>
+
+                    <label class="v-separator">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        <span class="sr-only">icon to send E-mail</span> 
+
+                        E-mail to
+                    </label>
+
+                    <label class="v-separator">
+                        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                        <!--<span class="sr-only">icon for "save to folder" </span> -->
+                        <a href="" data-toggle="modal" data-target="#myModal"> Save to Folder </a> 
+                    </label> 
+
+
+
+                </div><p></p>
+
+                <!--Save to folder modal-------------------------------------------------------------------------------------------------------------------------->
+                <!--<modal visible="showModal" style="display: none;">-->
+                <div class="container">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Save to folder</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p align="left"><b>New Folder Name:</b> <input type="text" style="width:140px;" ng-model="result.folderName" class="form-control" autofocus></p>
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <p><a href="" ng-click="getFolders()"><b>Existing Folders</b></a>
+                                    <div align="right"><button type="button" class="btn btn-default btn-primary" ng-click="saveSearch()">Create</button></div></p>
+                                    <div class="field-separator"></div>
+                                </div>
+                                <!-- <div class="modal-footer" align="left" ng-show="showFolders">
+                              <ul style="list-style-type:square">
+                                 <li><a href="">Folder 1</a></li><p></p>
+                                 <li><a href="">Folder 2</a></li><p></p>
+                                 <li><a href="">Folder 3</a></li>
+                              </ul>
+                                 </div>-->
+                                <!--</div>-->
+
+                                <div class="folders"><ul><li ng-repeat="a in abc"><a href="" align="center" ng-click="message()"><b>{{a.folderName}}</b></a></li></ul></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--</modal>-->
+                <!------------------------------------------------------------------------------------------------------------------------------------------>
+
+
+                <div class="container">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal1" role="dialog">
+                        <div class="modal-dialog modal-sm">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Saved Folders</h4>
+                                </div>
+
+                                <div class="folders"><ul><li ng-repeat="a in abc"><a href="" align="center" ng-click="showResults()"><b>{{a.folderName}}</b></a></li></ul></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+                <div align="right">
+                    <button type="button"class=" btn btn-default btn-sm" ng-click="clicked()">Back</button> &nbsp;
+                    <button type="button" class="btn btn-danger btn-sm" ng-click="exit()"><i class="fa fa-times"></i> Close</button>
+                </div>
+                <ul class="pagination">
+                    <li>
+                        <div class="block">
+                            <div class="block-header">
+
+                                <div class="cand-name">
+                                    <label>
+
+                                        <input type="checkbox" class="check-box" ng-model="r.isChecked" ng-change="selectCandidate()">
+                                    </label>
+                                    <span class="glyphicon glyphicon-user" style="color:#6495ED" aria-hidden="true"></span>
+                                    <span class="sr-only">icon for candidate</span>
+                                    B cxbv
+
+                                    <label class="cand-ug-year-pass">AIR(GEN.):</label>
+                                    3552	
+                                </div>
+                                <!--<div class="cand-degree">
+                                        <label><i class="glyphicon glyphicon-user" style="color:#6495ED"></i> Gender:</label>
+                                        {{r._source.gender}}
+                                                        
+                        </div>-->
+
+                                <div class="cand-inst-name">
+                                    <label><i class="fa fa-building-o" style="color:#6495ED"></i> UG Institute:</label>
+                                    Maharsahtrs Academy Of Engineering
+                                </div>
+
+
+                                <div class="cand-degree">
+                                    <label><i class="glyphicon glyphicon-education" style="color:#6495ED"></i> Degree:</label>
+                                    BE					
+                                    <label class="cand-ug-year-pass"><i class="fa fa-calendar" style="color:#6495ED"></i> Year Of Passing:</label>
+                                    2014
+                                    <label class="cand-CGPA"><i class="fa fa-bar-chart-o" style="color:#6495ED"></i> Score:</label>
+                                    8.6
+                                </div>
+
+                                <div class="cand-inst-name">
+                                    <label><i class="fa fa-building-o" style="color:#6495ED"></i> PG Institute:</label>
+                                    PICT
+                                </div>
+
+                                <div class="cand-degree">
+                                    <label><i class="glyphicon glyphicon-education" style="color:#6495ED"></i> Degree:</label>
+                                    M.E.
+
+                                    <label class="cand-pg-year-pass"><i class="fa fa-calendar" style="color:#6495ED"></i> Year Of Passing:</label>
+                                    2016
+                                    <label class="cand-CGPA"><i class="fa fa-bar-chart-o" style="color:#6495ED"></i> Score:</label>
+                                    9.6
+                                </div>
+                                <!--<div class="cand-year-pass">
+                                        <label><i class="fa fa-calendar"></i> Year Of Passing:</label>
+                                        {{r._source.ugYop}}
+                                </div>-->
+
+                                <!--<div class="cand-CGPA">
+                                        <label>Score:</label>
+                                        {{r._source.ugCgpa}}
+                                        
+                                </div>-->
+
+                                <div class="cand-interest">
+                                    <label>Skills:</label>
+                                    C,Angular JS
+
+                                </div>
+                                <div class="cand-interest">
+                                    <label>Domain Interest:</label>
+                                    IT Programming
+                                </div>
+
+                                <div class="comment cand-interest">
+                                    <label>Project Summary:</label>
+
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Vestibulum laoreet, nunc eget laoreet sagittis,
+                                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                                    Duis eget nisl orci. Aliquam mattis purus non mauris
+                                    blandit id luctus felis convallis.
+                                    Integer varius egestas vestibulum.
+                                    Nullam a dolor arcu, ac tempor elit. Donec.
+                                    <!--{{r._source.projSummary}}-->
+                                </div>
+
+                                <div class="cand-interest">
+                                    <label><i class="fa fa-map-marker" style="color:#6495ED"></i> Location:</label>
+                                    Pune
+                                </div>
+
+                                <div class="block-footer">
+                                    <div class="cand-contact">
+                                        <span class="glyphicon glyphicon-earphone" style="color:#6495ED" aria-hidden="true"></span>
+
+                                        <label>Contact:</label>
+                                        8983797332
+                                        <label class="cand-email">
+                                            <span class="glyphicon glyphicon-envelope" style="color:#6495ED" aria-hidden="true"></span>
+
+                                            E-mail:</label>
+                                        <!--<a ng-href="mailto:{{candidate.eMail}}?Subject=Regarding%20Job" target="_top">-->
+                                        dccs@gmail.com
+                                        </a>
+                                    </div>
+                                </div>	
+
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+
+                                        //$(".comment").shorten();
+                                        $(".comment").shorten({
+                                            "showChars": 50,
+                                            "moreText": "See More",
+                                            "lessText": "Less",
+                                        });
+                                    });
+                                </script>
+                                <div class="block-commit"></div>
+
+
+
+                            </div>
+                            <div class="block-distance"></div>	
+                    </li>
+                </ul>
+                <!--<p> 	name from backend is {{name}} </p>-->	
+
+        </div>
+        </form>			
+        <ng-include src="'templates/right-menu.html'"></ng-include>	
+        <ng-include src="'templates/footer.html'"></ng-include>
+    </div>
+    <div class="loading-spiner-holder" data-loading ></div>
+</div>

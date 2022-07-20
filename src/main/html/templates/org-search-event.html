@@ -1,0 +1,66 @@
+
+<div ng-controller="OrgSearchController">
+	<div class="loading-spiner-holder" data-loading ></div>
+		<!-- heading of search type(campus recruitment,internship,research project)-->
+		<form name="form" class="form-inline">
+		
+		<div>
+			<h4 class="inner-head" align="justify" class="panel-body">Search For Events</h4>
+		</div>
+								
+			<div class="search-form">
+			<div align="right">
+			<button type="button" class="search-button"  ng-click=" sendData3()"><!--ng-disabled="form.$pristine"-->
+												<i class="fa fa-search"></i> Search
+											</button></div><p></p>
+						
+				<div class="field-separator"></div>
+							
+				<p></p>
+							<div><label>Event Title:</label>
+							<input type="text" name="eventSummary" class="form-control" placeholder="Event name/summary" ng-model="title">
+									<p></p>										
+							<div class="field-separator"></div>
+								<p></p>
+							<div>
+									<label>Domain:</label>
+									<selectize config='itDomainsConfig' options='itDomainOptions' ng-model="itDomain"></selectize>
+									<selectize config='nonItDomainsConfig' options='nonItDomainOptions' ng-model="nonItDomain"></selectize>
+						  
+							</div>
+							<p></p>
+								<div class="field-separator"></div>
+							<p></p>
+							
+							<div>
+									<label>Functional Interest:</label>
+									<selectize config='functionalInterestConfig' options='functionalInterestOptions' ng-model="functionalInterest"></selectize>
+						  
+							</div>
+							<p></p>
+								<div class="field-separator"></div>
+							<p></p>
+							
+							<label>Paid or Free:</label>
+							<input type="radio" name="paidOrFree" value="paid" ng-model="paidOrFree"> Paid &nbsp;&nbsp;
+							<input type="radio" name="paidOrFree" value="free" ng-model="paidOrFree"> Free
+						<div class="field-separator"></div>
+							<p></p>
+						
+										
+								</div>
+						
+								<p></p>	
+											
+							
+								<div class="form-footer">
+											<button type="button" class="search-button"  ng-click=" sendData3()"><!--ng-disabled="form.$pristine"-->
+												<i class="fa fa-search"></i> Search
+											</button>
+								</div>	<p></p>	
+			
+			</div>		
+	</form>
+	
+</div>
+

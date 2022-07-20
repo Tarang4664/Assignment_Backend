@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="section"  ng-controller="ProfileResultController" ng-init="getResume()">
+    <div class="loading-spiner-holder" data-loading ></div>
+    <div class="profile-section profile-card">
+        <table class="table cand-inst-name"><tr><td> <h4><label><img class="img-circle" src="./images/midasfusion-profile.jpg"/>
+                            <strong>    {{searches.firstName + " " + searches.lastName}}{{searches.name}}</strong>
+                        </label></h4></td>
+                <td><label ng-show="searches.contactNumber1"><i class="fa fa-phone" /><strong> Contact No.: </strong>
+                        {{searches.contactNumber1 + "," + searches.contactNumber2}}</label>
+                    <label ng-show="searches.phone || searches.contactNumber"><i class="fa fa-phone" /><strong> Contact No.: </strong>
+                        {{searches.phone}}{{searches.contactNumber}}</label></td>
+            </tr><tr>
+                <td><label><i class="fa fa-map-marker" /><strong> Address: </strong></label>
+                    {{searches.addressDetails.city + ", " + searches.addressDetails.state + ", " + searches.addressDetails.country}}
+                </td>
+                <td><label><i class="fa fa-envelope" /><strong> Email:</strong></label>
+                    {{searches.emailId}}</td>
+            </tr></table>
+        <hr>
+        <div class="cand-inst-name"><h4><strong> General Details</strong></h4><br>
+            <label ng-show="searches.gender" style="width: 40%"><i class="fa fa-user"/><strong> Gender:</strong> 
+                {{searches.gender}}</label>
+            <label ng-show="searches.skypeId || searches.skype"><i class="fa fa-skype"/><strong> Skype Id: </strong>
+                {{searches.skypeId}}{{searches.skype}}</label>
+            <br ng-show="searches.gender">
+            <label ng-show="searches.orgName"><i class="fa fa-building-o"/><strong> Current Organization Name: </strong>
+                {{searches.orgName}}</label>
+            <br ng-show="searches.orgName">
+            <label ng-show="searches.contactPerson"><i class="fa fa-user"/><strong> Contact Person: </strong>
+                {{searches.contactPerson}}</label>
+            <br ng-show="searches.contactPerson">
+            <label ng-show="searches.website"><i class="fa fa-globe"/><strong> Website: </strong>
+                {{searches.website}}</label>
+            <br ng-show="searches.website">
+            <label ng-show="searches.yearFounded"><i class="fa fa-calendar-o"/><strong> Year Of Establishment: </strong>
+                {{searches.yearFounded}}</label>
+            <br ng-show="searches.yearFounded">
+            <label ng-show="searches.yearsOfExperience"><i class="fa fa-bar-chart-o"/><strong> Years Of Experience: </strong>
+                {{searches.yearsOfExperience + '+ year(s)'}}</label>
+            <br ng-show="searches.yearsOfExperience">
+            <label ng-show="searches.orgEmail"><i class="fa fa-envelope"/><strong> Current Organization Email: </strong>
+                {{searches.orgEmail}}</label>
+            <br ng-show="searches.orgEmail">
+            <label ng-show="searches.patents"><i class="glyphicon glyphicon-copyright-mark"/><strong> Patents: </strong>
+                {{searches.patents}}</label>
+            <br ng-show="searches.patents">
+            <label ng-show="searches.certificates"><i class="fa fa-certificate"/><strong> Certificates: </strong>
+                {{searches.certificates}}</label>
+
+
+        </div>
+        <hr>
+        <div class="cand-inst-name"><h4><strong> Professional Details</strong></h4><br>
+
+            <div class="cand-interest" ng-show="searches.jobInterest">
+                <label><i class="fa fa-check-circle"/><strong> Interests:</strong></label>							
+                <label ng-repeat="i in searches.jobInterest" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ i}}</label>						
+            </div> 
+
+            <div class="cand-interest" ng-show="searches.type">
+                <label ng-show="user.userType === 'organisation'"><i class="fa fa-check"/><strong> Organization Type: </strong>{{searches.type}}</label>							
+                <label ng-show="user.userType === 'institute'"><i class="fa fa-check"/><strong> Institute Type: </strong>{{searches.type}}</label>							
+
+            </div> 
+            <div class="cand-interest" ng-show="searches.numberOfEmployees">
+
+                <label><i class="fa fa-users"/><strong> Number Of Employees: </strong>{{searches.numberOfEmployees}}</label>							
+
+            </div> 
+            <div class="cand-interest" ng-show="searches.streams">
+                <label><i class="fa fa-check-circle-o"/><strong> Streams:</strong></label>							
+                <label ng-repeat="i in searches.streams" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ i}}</label>						
+            </div> 
+            <div class="cand-interest" ng-show="searches.interest">
+                <label><i class="fa fa-check-circle"/><strong> Interests:</strong></label>							
+                <label ng-repeat="i in searches.interest" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ i}}</label>						
+            </div> 
+            <div class="cand-interest" ng-show="searches.functionInterest">
+                <label><i class="fa fa-check"/><strong> Functional Interest:</strong></label>							
+                <label ng-repeat="fi in searches.functionInterest" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fi}}</label>						
+            </div> 
+            <div class="cand-interest" ng-show="searches.itDomain">
+                <label><i class="fa fa-check-circle-o"/><strong> IT Domain:</strong></label>							
+                <label ng-repeat="fi in searches.itDomain" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fi}}</label>						
+            </div> 
+            <div class="cand-interest" ng-show="searches.nonItDomain">
+                <label><i class="fa fa-check-circle-o"/><strong> Non-IT Domain:</strong></label>							
+                <label ng-repeat="fi in searches.nonItDomain" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fi}}</label>						
+            </div> 
+
+
+            <div class="cand-interest" ng-show="searches.domainInterest">
+
+                <label><i class="fa fa-check-circle-o"/> <strong> Domain Interest:</strong></label>
+                <label ng-repeat="domains in searches.domainInterest" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ domains||'None'}}</label>						
+            </div>
+            <div class="cand-interest" ng-show="searches.keySkills">
+                <label><i class="fa fa-bars"/><strong> Skills:</strong></label>							
+                <label ng-repeat="skill in searches.keySkills" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ skill}}</label>						
+            </div> 
+            <div class="cand-interest" ng-show="searches.preferLocation">
+                <label><i class="fa fa-map-marker" ></i><strong> Preferred Location(s):</strong></label>
+                <label ng-repeat="location in searches.preferLocation" >
+                    {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ location||'None'}}</label>
+            </div> 
+        </div>
+        <hr ng-show="searches.experienceDetails || searches.employmentDetails">
+        <div class="cand-inst-name"> 
+            <label ng-show="searches.experienceDetails || searches.employmentDetails"><h4><strong> Employment Details:</strong></h4>
+            </label>
+        </div>
+
+
+
+        <div class=" education cand-inst-name" ng-repeat="exp in (searches.experienceDetails|| searches.employmentDetails)">
+            <hr class="inner-hr">
+            <label style="width: 40%"><i class="glyphicon glyphicon-check" ></i><strong> Title:</strong>
+                {{exp.title}} </label>
+
+            <label ><i class="fa fa-building-o" ></i><strong> Company Name:</strong></label>
+            {{exp.companyName}}
+            <br>
+
+
+            <label ng-show="exp.startJobMonth"><i class="fa fa-clock-o" ></i> <strong>Duration:</strong>
+                {{exp.startJobMonth + ' ' + exp.startJobYear + ' to '}} <span ng-if="exp.endJobMonth">{{ exp.endJobMonth + ' ' + exp.endJobYear}}</span><span ng-if="!exp.endJobMonth">Till Date.</span></label> <br>
+            <label ng-show="exp.description"><i class="fa fa-pencil"  ></i><strong> Description:</strong>
+                {{exp.description}}</label> <br ng-show="exp.description">
+            <label style="text-align: left; width:auto"><i class="fa fa-map-marker" ></i> <strong>Location:</strong>
+                {{exp.location}} </label>
+
+        </div> 
+
+
+        <hr ng-show="searches.eduDetails">
+        <h4 ng-show="searches.eduDetails"><strong > Educational Details</strong></h4><br>
+        <div ng-show="searches.jeeMain" class="cand-inst-name">    
+            <label style="width: 40%;" ng-show="searches.jeeMain"><strong>AIR(GEN.):</strong>
+                {{searches.jeeMain}}	</label> 
+            <label ng-show=" searches.jeeAdv"><strong>AIR(ADV.):</strong>
+                {{searches.jeeAdv}}	</label> <BR>
+        </div>
+        <div class="cand-inst-name" ng-repeat="education in searches.eduDetails">
+            <hr class="inner-hr">
+            <label style="width: 40%"><i class="glyphicon glyphicon-education" ></i><strong> Degree:</strong>
+                {{education.degree}} </label>
+
+            <label ><i class="fa fa-pencil-square-o" ></i><strong> Course:</strong></label>
+            {{education.fieldOfStudy}}
+            <br>
+
+
+            <label><i class="fa fa-building-o" ></i> <strong>School:</strong></label>
+            {{education.school}} <br>
+            <label><i class="fa fa-pencil" ></i><strong> CGPA/Percentage:</strong></label>
+            {{education.grade}} <br>
+            <label style="text-align: left; width:auto"><i class="fa fa-calendar-o" ></i> <strong>Start Year:</strong>
+                {{education.startDate}} </label>
+            <label style="text-align: right; width:50%"><i class="fa fa-calendar-o" ></i> <strong>End Year:</strong>
+                {{education.endDate}} </label><br>
+            <label ng-show="education.activities"><i class="fa fa-pencil" ></i><strong> Activities:</strong>
+                {{education.activities}}</label> <br>
+            <label ng-show="education.description"><i class="fa fa-pencil" ></i><strong> Description:</strong>
+                {{education.description}}</label> <br>
+
+        </div>
+        <label ng-show=" searches.projSummary"><i class="fa fa-comments"></i><strong> Project Summary:</strong>
+            {{searches.projSummary}}	</label> <BR> 
+        <label ng-show=" searches.pprPubli"><i class="fa fa-paperclip"></i><strong> Paper Published:</strong>
+            {{searches.pprPubli}}	</label> <BR>
+
+        <div class="right" ng-show="!searches.view">
+            <a ng-href="{{fileURL}}" target="_blank"><button class="btn btn-success" ng-show="searches.userType === 'student'" >View Resume</button></a>
+        </div>
+            <br>
+        <div class="center" ng-show="searches.view === 'public'" style="color:  #00BB64;"><label>Please Login And View Applied Candidates in Your Posted Opportunity to See Candidates Resume</label>   </div>
+    </div>
+    <ng-include src="'templates/footer.html'"></ng-include>
+</div>

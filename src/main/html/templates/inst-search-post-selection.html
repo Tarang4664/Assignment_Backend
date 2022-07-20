@@ -1,0 +1,45 @@
+
+<div class="section">
+    <div class="left-section left-section-inner">
+        <div align="center">
+            <input type="radio" name="searchType" value="searchType"  ng-click="showForm = true;showForm1 = false" style="width: 2em; height: 1em;"><label>Profile Search</label>&nbsp;&nbsp;
+            <input type="radio" name="searchType" value="searchType"  ng-click="showForm1 = true;showForm = false" style="width: 2em; height: 1em;"><label>Opportunity Search</label>
+        </div><p></p>
+        <div ng-show="showForm">		
+            <ul class="nav-tabs nav-justified">
+                <li><a href="" ng-click="showOrg = true;showMentor = false">Search Organization</a></li>
+                <li><a href="" ng-click="showMentor = true;showOrg = false">Search Mentor</a></li>
+            </ul>
+
+
+            <p></p>
+
+            <div ng-show="showOrg">
+                <div ng-include src="'templates/inst-search-org.html'"></div>
+            </div>
+            <div ng-show="showMentor">
+                <div ng-include src="'templates/org-search-mentor.html'"></div>
+            </div>
+        </div>
+
+        <div ng-show="showForm1">
+            <ul class="nav-tabs nav-justified">
+                <li><a href="" ng-model="type" ng-click="type = 'job';showJob = true;showMentorship = false;showGuest = false">Job</a></li>
+                <li><a href="" ng-model="type" ng-click="type = 'internship';showJob = true;showMentorship = false;showGuest = false">Internship</a></li>
+                <li><a href="" ng-model="type" ng-click="type = 'research';showJob = true;showMentorship = false;showGuest = false">Research</a></li>
+              
+            </ul>
+            <p></p>
+            <div ng-show="showJob">
+                <div ng-include src="'templates/stud-search-opp.html'"></div>
+            </div>
+
+           
+
+        </div>
+    </div>
+     <ng-include src="'templates/right-menu.html'"></ng-include>	
+
+    <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

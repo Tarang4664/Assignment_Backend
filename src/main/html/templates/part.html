@@ -1,0 +1,119 @@
+	<div align="right">
+	<button type="reset" value="Reset">Clear All</button></div><p></p>
+				<div class="form-inline" ng-class="{ 'has-error': form.positionName.$touched && form.positionName.$invalid}">	
+				<label>*Position Name:</label>
+				
+					<input type="text" name="positionName" style="width:310px;" ng-model='$parent.summary' class="form-control" placeholder="Enter Postion Name" required="" autofocus>
+					<div class="help-block" ng-messages="form.positionName.$error" ng-if="form.positionName.$touched">
+						<p ng-message="required">This field is required!</p>
+					</div>
+				</div>
+			
+			<p></p>
+			<div class="form-inline">
+				<label>No. Of Positions:</label>
+				<select class="form-control" name="noOfPositions" style="width:80px;" ng-model='$parent.noOfPositions'>
+					<option selected="selected" value="-1" disabled selected>- Select a No. -</option>
+					<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+					<option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+					<option value="10+">10+</option>
+				</select>
+		
+				&nbsp;<label>Monthly Budget:</label>
+				
+					<input type="number" name="budget" ng-model='$parent.budget' style="width:80px;" class="form-control" placeholder="">&nbsp;
+				
+				
+				<select class="form-control" placeholder="Currency" title="Currency" style="width: 80px;" ng-model='$parent.currency'>
+				<option selected="selected" value="-1" disabled selected>- Choose Currency -</option>
+				<option value="INR">INR</option>
+				<option value="USD">USD</option>
+				</select>
+			</div>	
+			<p></p>
+			
+			<div class="form-inline">
+			<label>*Keyskills:</label> <selectize config='skillConfig' options='skillOptions' ng-model="$parent.keySkills"></selectize>
+				<!--<p class="msg-error">{{skillMessage}}</p>-->
+			</div><p></p>
+				
+				<!--<div class="form-inline" ng-class="{ 'has-error': form.jobLocation.$touched && form.jobLocation.$invalid}">	-->
+				<label>*Job Location(s):</label>
+				<selectize name="jobLocation" config='locationConfig' options='locationOptions' ng-model="$parent.jobLocation"></selectize><p><p>
+			<div class="field-separator"></div>
+			<p></p>
+				<div>
+				<h4 class="inner-head">Eligibility Criteria</h4>
+					
+                                <b ng-init="ng-click="showBlock=true"">*Add Qualification</b> 
+						<div ng-show="showBlock">
+						
+						<selectize name="major" config='majorConfig' options='majorOptions' ng-model='$parent.major'></selectize>
+						<selectize name="course" config='courseConfig' options='courseOptions' ng-model='$parent.course'></selectize>
+						<selectize name="stream" config='streamConfig' options='streamOptions' ng-model='$parent.stream'></selectize>
+						<input type="number" name="yop" class="form-control" placeholder="Enter Year of Passing" string-to-number ng-model='$parent.yop'>
+						<input type="number" class="form-control" ng-model='$parent.cgpaMin' placeholder="Min.CGPA" name="minGrade">
+						<input type="number" class="form-control" ng-model='$parent.percentageMin' placeholder="Min.Percentage" name="maxGrade"><a href=""><img class="add right" src="images/remove.png" ng-click="showBlock=false"/></a>Remove <a href=""><img class="add right" src="images/add.png" ng-click="showBlock1=true"/></a>Add
+						<p></p>
+
+
+<!--						<div ng-show="showBlock1">
+							<selectize name="major" config='majorConfig1' options='majorOptions1' ng-model='$parent.major1'></selectize>
+						<selectize name="course" config='courseConfig1' options='courseOptions1' ng-model='$parent.course1'></selectize>
+						<selectize name="stream" config='streamConfig1' options='streamOptions1' ng-model='$parent.stream1'></selectize>
+						<selectize name="yop" config='yopConfig1' options='yopOptions1' ng-model='$parent.yop1'></selectize>
+						<input type="text" class="form-control" ng-model='$parent.cgpaMin1' placeholder="Min.CGPA" name="minGrade">
+						<input type="text" class="form-control" ng-model='$parent.percentageMin1' placeholder="Min.Percentage" name="maxGrade"><a href=""><img class="add right" src="images/remove.png" ng-click="showBlock1=false"/></a>Remove <a href=""><img class="add right" src="images/add.png" ng-click="showBlock2=true"/></a>Add
+						</div><p></p>
+
+						<div ng-show="showBlock2">
+						<selectize name="major" config='majorConfig2' options='majorOptions2' ng-model='$parent.major2'></selectize>
+						<selectize name="course" config='courseConfig2' options='courseOptions2' ng-model='$parent.course2'></selectize>
+						<selectize name="stream" config='streamConfig2' options='streamOptions2' ng-model='$parent.stream2'></selectize>
+						<selectize name="yop" config='yopConfig2' options='yopOptions2' ng-model='$parent.yop2'></selectize>
+						<input type="text" class="form-control" ng-model='$parent.cgpaMin2' placeholder="Min.CGPA" name="minGrade">
+						<input type="text" class="form-control" ng-model='$parent.percentageMin2' placeholder="Min.Percentage" name="maxGrade"><a href=""><img class="add right" src="images/remove.png" ng-click="showBlock2=false"/></a>Remove <a href=""><img class="add right" src="images/add.png" ng-click="showBlock3=true"/></a>Add
+						</div><p></p>
+
+						<div ng-show="showBlock3">
+						<selectize name="major" config='majorConfig3' options='majorOptions3' ng-model='$parent.major3'></selectize>
+						<selectize name="course" config='courseConfig3' options='courseOptions3' ng-model='$parent.course3'></selectize>
+						<selectize name="stream" config='streamConfig3' options='streamOptions3' ng-model='$parent.stream3'></selectize>
+						<selectize name="yop" config='yopConfig3' options='yopOptions3' ng-model='$parent.yop3'></selectize>
+						<input type="text" class="form-control" ng-model='$parent.cgpaMin3' placeholder="Min.CGPA" name="minGrade">
+						<input type="text" class="form-control" ng-model='$parent.percentageMin3' placeholder="Min.Percentage" name="maxGrade"><a href=""><img class="add right" src="images/remove.png" ng-click="showBlock3=false"/></a>Remove <a href=""><img class="add right" src="images/add.png" ng-click="showBlock4=true"/></a>Add
+						</div><p></p>
+
+						<div ng-show="showBlock4">
+						<selectize name="major" config='majorConfig4' options='majorOptions4' ng-model='$parent.major4'></selectize>
+						<selectize name="course" config='courseConfig4' options='courseOptions4' ng-model='$parent.course4'></selectize>
+						<selectize name="stream" config='streamConfig4' options='streamOptions4' ng-model='$parent.stream4'></selectize>
+						<selectize name="yop" config='yopConfig4' options='yopOptions4' ng-model='$parent.yop4'></selectize>
+						<input type="text" class="form-control" ng-model='$parent.cgpaMin4' placeholder="Min.CGPA" name="minGrade">
+						<input type="text" class="form-control" ng-model='$parent.percentageMin4' placeholder="Min.Percentage" name="maxGrade"><a href=""><img class="add right" src="images/remove.png" ng-click="showBlock4=false"/></a>Remove
+						</div><p></p>-->
+			
+			</div><p></p>
+			<!--<div class="field-separator"></div><p><p>-->
+					<div class="form-inline">	
+					
+					
+					<label>*Min. Experience:</label>&nbsp;<select class="form-inline form-control" style="width:100px;" name="minExp" ng-model='$parent.minExperience'>
+						<option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+						<option value="0">0 year</option><option value="1">1 year</option><option value="2">2 years</option>
+						<option value="3">3 years</option><option value="4">4 years</option><option value="5">5 years</option>
+						<option value="6">6 years</option><option value="7">7 years</option><option value="8">8 years</option>
+						<option value="9">9 years</option><option value="10">10 years</option><option value="10">10+ years</option>
+					</select>
+					
+					<label>*Max. Experience:</label>&nbsp;<select class="form-inline form-control" style="width:100px;" name="maxExp" ng-model='$parent.maxExperience'>
+						<option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+						<option value="0">0 year</option><option value="1">1 year</option><option value="2">2 years</option>
+						<option value="3">3 years</option><option value="4">4 years</option><option value="5">5 years</option>
+						<option value="6">6 years</option><option value="7">7 years</option><option value="8">8 years</option>
+						<option value="9">9 years</option><option value="10">10 years</option><option value="10">10+ years</option>
+					</select>
+					
+					
+				</div><p></p>
+					<div class="field-separator"></div><p><p>

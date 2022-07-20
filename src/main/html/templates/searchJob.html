@@ -1,0 +1,78 @@
+
+<div>
+    <div class="loading-spiner-holder" data-loading ></div>
+    <!-- heading of search type(campus recruitment,internship,research project)-->
+    <form name="form" class="form-inline">
+
+        <div>
+            <h4 class="inner-head" align="justify" class="panel-body">Search Opportunities</h4>
+        </div>
+
+        <div class="search-form">
+            <div align="right">
+                <button type="button" class="search-button"  ng-click=" searchJob()"><!--ng-disabled="form.$pristine"-->
+                    <i class="fa fa-search"></i> Search
+                </button></div><p></p>
+
+            <p></p>
+            <div class="field-separator"></div>
+            <p></p>
+
+            <div>
+                <div>	
+                    <label>Title:</label>
+                    &nbsp;&nbsp<input type="text" name="title" class="form-control" placeholder="Job Title" ng-model="$parent.title"><p></p>
+                    <label>Skills:</label>
+                    <selectize config='skillConfig' options='skillOptions' ng-model="$parent.areaOfExpertise"></selectize>
+                    <div>
+                        <label>Location:</label>
+                        <!--<div  ng-controller="dropdownController">-->
+                        <selectize name="jobLocation" config='locationConfig' options='locationOptions' ng-model="$parent.jobLocation"></selectize>
+
+                        <!--</div>-->
+                    </div><p></p>
+                    <div>
+                        <label>Qualification Details:</label>
+                        <selectize name="major" config='majorConfig' options='majorOptions' ng-model='$parent.major'></selectize>
+
+                        <selectize name="course" config='courseConfig' options='courseOptions' ng-model='$parent.course'></selectize>
+
+                        <selectize name="stream" config='streamConfig' options='streamOptions' ng-model='$parent.stream'></selectize>
+                    </div>
+                     <div><label>Grade:</label></div>
+                    <label> CGPA. :</label>
+
+                    <input type="number" min="0" max="10" class="form-control" style="width:100px;" ng-model="$parent.cgpa">
+
+                    <label> Percentage. :</label>
+
+                    <input type="number" min="0" max="100"  class="form-control" style="width:100px;" ng-model="$parent.percentage"><p></p>
+                    <div class="field-separator"></div>
+                    <p></p>
+                    
+                   <label>Experience:</label>
+                  <input type="number" class="form-control" style="width:100px;" ng-model="$parent.exp">
+
+                        <p></p>
+                    <div class="field-separator"></div>
+               
+                   
+
+
+                </div>
+
+                <p></p>	
+
+
+                <div class="form-footer">
+                    <button type="button" class="search-button"  ng-click=" searchJob()"><!--ng-disabled="form.$pristine"-->
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>	<p></p>	
+
+            </div>		
+
+
+        </div>
+    </form>
+</div>

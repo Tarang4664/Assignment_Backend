@@ -1,0 +1,64 @@
+
+<div>
+    <div class="loading-spiner-holder" data-loading ></div>
+    <!-- heading of search type(campus recruitment,internship,research project)-->
+    <form name="form" class="form-inline">
+
+        <div>
+            <h4 class="inner-head" align="justify" class="panel-body">Search For Mentorship</h4>
+        </div>
+
+        <div class="search-form">
+            <div align="right">
+                <button type="button" class="search-button"  ng-click=" searchMenteeship()"><!--ng-disabled="form.$pristine"-->
+                    <i class="fa fa-search"></i> Search
+                </button></div><p></p>
+
+            <label> Title :</label>
+
+            <input type="text" min="1970" max="9999" class="form-control" placeholder="Title" ng-model="$parent.title">
+
+
+            <p></p>
+            <h4 class="inner-head">Eligibility Criteria</h4>
+
+
+            <div >
+
+                <selectize name="major" config='majorConfig' options='majorOptions' ng-model='$parent.major'></selectize>
+                <selectize name="course" config='courseConfig' options='courseOptions' ng-model='$parent.course'></selectize>
+                <selectize name="stream" config='streamConfig' options='streamOptions' ng-model='$parent.stream'></selectize>             
+ <p></p>
+
+                <div><label>Experience:</label>
+
+
+                    <input type="number" min="0" max="50" class="form-control" style="width:100px;" ng-model="$parent.exp">
+                </div>
+ <p></p>
+                <div class="field-separator"></div>
+                <p></p>
+                <div><label>Year Of Passing:</label></div>
+                <label> Min. :</label>
+
+                <input type="number" min="1970" max="9999" class="form-control" style="width:100px;" ng-model="$parent.yopMin">
+
+                <label> Max. :</label>
+
+                <input type="number" min="1970" max="9999" class="form-control" style="width:100px;" ng-model="$parent.yopMax"><p></p>
+
+                <div class="field-separator"></div>
+                <div class="form-footer">
+                    <button type="button" class="search-button"  ng-click=" searchMenteeship()"><!--ng-disabled="form.$pristine"-->
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>
+                <p></p>		
+
+            </div>		
+
+
+        </div>
+
+    </form>
+</div>

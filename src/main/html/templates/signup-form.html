@@ -1,0 +1,218 @@
+<!--<div class="banner inner-banner">
+        <h2 class="inner-head">organisations</h2>
+        <img src="images/inner-banner.png" class="box-shadow" alt="">
+</div>-->
+
+<div class="section-signup" ng-controller="BaseController" ng-init="showStudent = true;">
+    <div class="loading-spiner-holder" data-loading ></div>
+    <div class="profile-section"><h4>Select Your User Type</h4>
+        <ul class="nav-tabs nav-tabs-signup nav-justified">
+            <li><a href="" ng-click="showStudent = true;showOrganization = false;showMentor = false;showInstitute = false;">Students/Professionals</a></li>
+            <li><a href="" ng-click="showStudent = false;showOrganization = false;showMentor = true;showInstitute = false">Mentors</a></li>
+            <li><a href="" ng-click="showStudent = false;showOrganization = false;showMentor = false;showInstitute = true">Educational Institutes</a></li>
+            <li><a href="" ng-click="showStudent = false;showOrganization = true;showMentor = false;showInstitute = false">Organizations</a></li>
+        </ul>
+    </div>
+
+
+    <div class="profile-section signup-card" ng-show="showOrganization">
+        <a class="button-signup" href="#/home/organisation-signup-form" ng-model="user.type" value="organisation"  role="button" >
+            <button  class=" btn-bitbucket center button-signup">
+
+
+
+                <i class="fa fa-building-o"></i> Sign Up As<br>An Organisation<br>
+            </button>
+        </a>
+        <div style="padding: 5%">
+            <p><b> Career Mentoring:</b><br>
+                &#10004;  Collaboration with world-class premium Talents/Youth and Institutions. 
+            </p>
+            <p><b>
+                    Opportunities:</b><br>
+                &#10004;  Collaboration with Institution for Mentorship, Research Interests, Internships, Sponsorships, Placement opportunities<br>
+                &#10004;  Access to potential hires through opportunities. </p>
+            <p><b>
+                    Branding:</b><br>
+                &#10004;  Increasing a pool of potential hires. Increased job satisfaction in new hires will help improve employer rating.<br>
+                &#10004;  University out-reach and branding at premium institutes, talents.</p>
+            <p><b>New Idea Development/Start-up incubation:</b><br>
+                &#10004;  Reduce attrition among new hires by providing professional interaction environment for organisations and upcoming graduates.<br>
+                &#10004;  Expose organisations to new ideas from talented youth<br>
+                &#10004;  Access of recent research made at universities; to recruit graduates; to solve daily problems</p>
+
+            <p><b>Salient Features</b><br>
+                &#10004;  Search Mentors,Institutes and Students. View Their Profiles and get in contact.
+                <br>
+                &#10004;  Search among opportunities for Event Sponsorship, Mentorship and Guest Speakers and get opportunity to “give-back.
+                <br>
+                &#10004;  Post your personalized opportunities of Job, Internship, Research Projects, Menteeship and get the creamy layer of talent to apply your opportunities.
+                <br>
+                &#10004;  View, Shortlist, Reject Candidates who applied for your opportunities and get your vacancies filled with a deserving lad out there.
+                <br>
+                &#10004;  Use the email templates feature to store your templates which can be used for sending. Its quite Easy.
+                <br>
+                &#10004;  Save your searches for future use.
+                <br>
+                &#10004;  Hidden contact details.
+                <br>
+
+        </div>
+    </div>
+
+    <div class="profile-section signup-card" ng-show="showMentor">
+        <a href="#/home/mentor-signup-form" ng-model="user.type" value="mentor"  role="button" >
+            <button class="button-signup btn-bitbucket">
+
+
+                <i class="fa fa-user"></i> Sign Up As A<br>Mentor
+            </button>
+        </a>
+        <div style="padding: 5%">
+            <p><b>    Career Mentoring:</b> <br>
+                &#10004; Collaboration with world-class premium Talents/Youth and Institutions.  <br>
+                &#10004; Allows the mentor to “Give-back" with mentorship opportunities.  
+            </p>
+            <p><b>
+                    Opportunities:</b><br>
+                &#10004; Collaboration with Institution and industry for Jobs, Mentorship, Research Interests, Internships, Sponsorships opportunities.<br>
+                &#10004; Access to potential hires through opportunities. <br></p>
+            <p><b>
+                    Branding:</b><br>
+                &#10004; Increasing a pool of potential hires. Increased job satisfaction in new hires will help improve employer rating.<br>
+
+                &#10004; University out-reach and branding at premium institutes, talents.<br></p>
+            <p><b>New Idea Development/Start-up incubation:</b><br>
+                &#10004; Reduce attrition among new hires by providing professional interaction environment for organisations and students/professionals.<br>
+                &#10004; Expose yourself to new ideas from talented youth<br>
+                &#10004; Access of recent research made at universities; to recruit graduates; to solve daily problems<br></p>
+
+            <p><b>
+                    Salient features: </b><br>
+                &#10004; Search Organisations,Institutes and Students/Professionals. View their Profiles and network with them.
+                <br>
+                &#10004; Search Job, Internship, Research Projects, Mentorship or Guest Speaker and and apply for matching opportunities.
+                <br>
+                &#10004; Post your personalized opportunities of Job, Internship, Research Projects, Mentorship and help others creating their better future.
+                <br>
+                &#10004; View, Shortlist, Reject Candidates who applied for your opportunities.
+                <br>
+                &#10004; Use the email templates feature to store your email templates. 
+                <br>
+                &#10004; Save your searches for future use.
+                <br>
+                &#10004; Use our Saved Folders feature to save profiles,opportunities together.
+                <br>
+                &#10004; Hidden contact details.
+
+            </p>
+
+
+            <br>
+        </div>
+
+    </div>
+
+    <div class="profile-section signup-card" ng-show="showStudent">
+        <a href="#/home/student-signup-form" ng-model="user.type" value="student"  role="button" > 
+            <button class="button-signup btn-bitbucket">
+
+
+                <i class="glyphicon glyphicon-user" ></i> Sign Up As A<br>Student/Professional
+            </button>
+        </a>
+
+        <div style="padding: 5%">
+
+            <b>Career Mentoring:</b>
+            <br>&#10004; Collaboration with world-class mentors, innovators and Industry by Mentorship opportunities.
+            <br>      
+
+            <p><p> <b>Internship and Placement opportunities:</b>
+                <br>&#10004; Collaboration with Industry for Jobs, Research Interests, Internships, Sponsorships, Mentorship opportunities.
+                <br>&#10004; Internship opportunities could server as an extended lab 
+            <p>
+                <b>Branding:</b>
+                <br>&#10004; Branding at Organisation/Industry
+            <p><b>New Idea Development/Start-up incubation:</b>
+                
+                <br>&#10004; Opportunity to develop Intellectual property/innovation.
+                <br>&#10004; The relationship with mentor may result in internships, jobs or even in helping inventors with presentations to VCs and helping them start a new company.
+
+            <p>
+
+            <div><b>Salient features:</b></div>
+
+            &#10004; Search Organisations,Institutes and Mentors. View their Profiles and network with them.
+
+            <br>
+            &#10004; Search Job, Internship, Research Projects, Mentorship opportunities and apply for matching opportunities.
+
+            <br>
+            &#10004; Use the email templates feature to store your email templates.  
+            <br>
+
+            &#10004; Save your searches for future use.
+            <br>
+
+            &#10004; Use our Saved Folders feature to save profiles,opportunities together.
+
+
+        </div>
+
+    </div>
+
+    <div class="profile-section signup-card" ng-show="showInstitute">
+        <a  href="#/home/institute-signup-form" ng-model="user.type"  value="institute" role="button"> 
+            <button class=" button-signup btn-bitbucket">
+
+
+
+                <i class="glyphicon glyphicon-education"></i> Sign Up As<br>An Educational Institute<br>
+            </button>
+        </a>
+        <div style="padding: 5%">
+            <p><b>    Career Mentoring:</b><br>
+                &#10004; Collaboration with world-class mentors/innovators by Mentorship opportunities
+            </p>
+            <p><b>
+                    Opportunities:</b><br>
+                &#10004; Collaboration with Industry for Mentorship, Research Interests, Internships, Sponsorships, Placement opportunities<br>
+                &#10004; Internship opportunities could server as extended lab.
+            </p>
+            <p><b>Branding:</b><br>
+                &#10004; Branding at Organisation/Industry<br>
+                &#10004; Increase the hiring from institutions and hence, increase the pool of applicants to the institution.</p>
+            <p><b>New Idea Development/Start-up incubation:</b><br>
+                &#10004; By making the theory more relevant to the real-world experience, students would be more motivated to learn the theory which is applicable to the internships they have.<br>
+                &#10004; Opportunity to develop Intellectual property/innovation.<br>
+                &#10004; The relationship with mentor may result in internships, jobs or even in helping inventors with presentations to VCs and helping them start a new company.
+            </p>
+            <p><b>Salient Features</b><br>
+                &#10004; Search Mentors,Organisations and Students. View their Profiles and network with them.
+                <br>
+                &#10004; Get your Students Enrolled with us and enable them with unlimited opportunities to excel in their career. 
+                <br>
+                &#10004; Search among opportunities for Job, Internship, Research Projects and let your students be ahead of others.
+                <br>
+                &#10004; Post your personalized opportunities of Mentorship, Events, Guest Speaker and get the experts interact with your students.
+                <br>
+                &#10004; Use the email templates feature to store your email templates. 
+                <br>
+                &#10004; Save your searches for future use.
+                <br>
+                &#10004; Hidden contact details.
+
+        </div>
+
+    </div>
+
+
+    <p></p>
+
+
+
+
+    <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

@@ -1,0 +1,74 @@
+
+<div ng-controller="OrgSearchController">
+    <div class="loading-spiner-holder" data-loading ></div>
+    <!-- heading of search type(campus recruitment,internship,research project)-->
+    <form name="form" class="form-inline">
+
+        <div>
+            <h4 class="inner-head" align="justify" class="panel-body">Search For Organization</h4>
+        </div>
+
+        <div class="search-form">
+            <div align="right">
+                <button type="button" class="search-button"  ng-click=" sendORGData()"><!--ng-disabled="form.$pristine"-->
+                    <i class="fa fa-search"></i> Search
+                </button></div><p></p>
+            
+            <p></p>
+            <div class="field-separator"></div>
+
+            <p></p>							
+            <div>
+                <label>Location:</label>
+                <!--<div  ng-controller="dropdownController">-->
+                <selectize name="jobLocation" config='locationConfig' options='locationOptions' ng-model="jobLocation"></selectize>
+
+                <!--</div>-->
+            </div>
+            <!--</div>-->
+            <div>
+                <label>Domain:</label>
+                <selectize config='itDomainsConfig' options='itDomainOptions' ng-model="itDomain"></selectize>
+                <selectize config='nonItDomainsConfig' options='nonItDomainOptions' ng-model="nonItDomain"></selectize>
+            </div>
+            <p></p>
+            <div class="field-separator"></div>
+            <p></p>
+
+            <div>
+                <label>Organization Type:</label>
+                <input type="radio" name="Product Based" value="Product Based" ng-model="orgType">Product Based &nbsp;
+                <input type="radio" name="Service Based " value="Service Based" ng-model="orgType">Service Based &nbsp;
+                <input type="radio" name="Product Based and Service Based" value="Product Based and Service Based" ng-model="orgType">Both
+            </div>
+            <p></p>
+            <div class="field-separator"></div>
+            <p></p>		
+
+            <div>
+                <label>Interested in:</label><p></p>
+
+                <label style="font-weight: normal" ng-repeat="interest in interests">
+                    <input
+                        type="checkbox"
+                        name="selectedInterests[]"
+                        value="{{interest.name}}"
+                        ng-model="interest.selected"
+                        > {{interest.name}}&nbsp;
+
+                </label>
+            </div>
+            <p></p>
+            <div class="field-separator"></div>
+            <p></p>									
+            <div class="form-footer">
+                <button type="button" class="search-button"  ng-click=" sendORGData()"><!--ng-disabled="form.$pristine"-->
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </div>	<p></p>	
+
+        </div>		
+    </form>
+
+</div>
+

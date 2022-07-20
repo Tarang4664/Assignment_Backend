@@ -1,0 +1,164 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: future-maker
+  description: Connecting organisations to institutions.
+basePath: /api/fm/v0
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /opportunities:
+    post:
+      summary: opportunity creation
+      description: creates the opportunity for a consumer.
+      parameters:
+        - name: request
+          in: body
+          description: type param should - job or internship or research or speaker or mentor
+          required: true
+          schema:
+            $ref: '#/definitions/OpportunityRequest'
+      responses:
+        "200":
+          description: opportunity created
+          schema:
+            $ref: '#/definitions/OpportunityResponse'
+        "422":
+          description: the request has invalid values
+          schema:
+            $ref: '#/definitions/ValidationError'
+        "400":
+          description: the request is malformed
+          schema:
+            $ref: '#/definitions/GenericError'
+        "404":
+          description: user not found
+          schema:
+            $ref: '#/definitions/NotFoundError'
+  /opportunities/{opportunityId}:
+    get:
+        summary: retrieve opportunities
+        description: returns opportunities depending on different combinations of subscription id ,merchant id and subscriber email
+        parameters:
+        - name :  opportunityId
+          in: path
+          type: string
+          description: Opportunity Id
+          required: true
+        responses:
+          "200":
+            description: Opportunity retrieved
+            schema:
+              $ref: '#/definitions/OpportunityResponse'
+          "400":
+            description: the request is malformed
+            schema:
+              $ref: '#/definitions/GenericError'
+    put:
+        summary: update opportunities
+        description: returns opportunities depending on different combinations of subscription id ,merchant id and subscriber email
+        parameters:
+        - name: request
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/OpportunityRequest'
+        - name :  opportunityId
+          in: path
+          type: string
+          description: Opportunity Id
+          required: true
+        responses:
+          "200":
+            description: Opportunity retrieved
+            schema:
+              $ref: '#/definitions/OpportunityResponse'
+          "400":
+            description: the request is malformed
+            schema:
+              $ref: '#/definitions/GenericError'
+    delete:
+        summary: delete opportunities
+        description: returns opportunities depending on different combinations of subscription id ,merchant id and subscriber email
+        parameters:
+        - name :  opportunityId
+          in: path
+          type: string
+          description: Opportunity Id
+          required: true
+        responses:
+          "400":
+            description: the request is malformed
+            schema:
+              $ref: '#/definitions/GenericError'
+
+definitions:
+  OpportunityRequest:
+    required:
+      - name
+      - type
+    optional:
+      - location
+      - startDate
+      - duration
+      - quotation
+      - startedOn
+      - deadline
+      - html
+      - number
+    properties:
+      name:
+        type: string
+        example: summer internship
+      location:
+        type: string
+        example: pune
+      type:
+        type: string
+        example: internship
+      html:
+        type: string
+        example: description of a opportunity.
+  OpportunityResponse:
+    required:
+      - id
+      - type
+      - name
+      - html
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      name:
+        type: string
+      html:
+        type: string
+  GenericError:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: string
+  ValidationError:
+    required:
+      - errors
+    properties:
+      errors:
+        type: array
+        items:
+          type: string
+  NotFoundError:
+    required:
+      - error
+    properties:
+      error:
+        type: string

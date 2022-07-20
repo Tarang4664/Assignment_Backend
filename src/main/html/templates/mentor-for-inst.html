@@ -1,0 +1,21 @@
+
+
+<div ng-controller="InstPostController">
+    <div class="search-form">
+        <form name="form">
+            <div align="right">
+                    <button type="reset" value="Reset" ng-click="clearAll();">Clear All</button></div><p></p>
+            <div ng-include="'templates/Part2.html'"></div>
+            <input type="hidden" name="country" ng-model='$parent.type' ng-init="$parent.type = 'Mentorship'" value="Mentorship">
+
+            <div class="form-footer">
+                <input type="submit" class="btn btn-primary" ng-disabled="form.$invalid"  value="Post Opportunity" ng-click="addMentorEduDetails(); copyMentorOpportunity();postEventOpportunity()"><!-- ng-disabled="form.$invalid" -->
+                <!--<i class="fa fa-upload"></i>-->
+                </input>
+            </div>	<p></p>	
+        </form>
+    </div>	
+
+<div class="loading-spiner-holder" data-loading ></div>
+</div>
+

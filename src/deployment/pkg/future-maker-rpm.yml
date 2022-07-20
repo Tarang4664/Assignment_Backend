@@ -1,0 +1,18 @@
+defaultName: future-maker
+
+mongo:
+  db: "ManiBooks"
+  servers:
+    - host: "localhost"
+      port: 27017
+
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      threshold: ALL
+      timeZone: UTC
+      currentLogFilename: /var/log/future-maker/app.log
+      archive: true
+      archivedLogFilenamePattern: /var/log/future-maker/app-%d.log
+      archivedFileCount: 5

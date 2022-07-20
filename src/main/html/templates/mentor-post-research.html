@@ -1,0 +1,26 @@
+
+<div ng-controller="MentorPostController">
+<div class="loading-spiner-holder" data-loading ></div>
+<form name="form" role="form"> 
+	
+	<div>
+			<h4 class="inner-head">Research Project Opportunity</h4>
+		</div>
+		<p></p>
+		<div class="search-form">
+			<div ng-include src="'templates/part.html'"></div>
+			<p></p>
+			<div ng-include src ="'templates/part1.html'"></div>
+			 <input type="hidden" name="country" ng-model='$parent.type' ng-init="$parent.type='Research'" value="Job">
+			<div class="form-footer">
+					<input type="submit" class="btn btn-primary"  value="Post Opportunity" ng-disabled="form.$invalid" ng-click="addDetails(); copyOpportunity();postOpportunity()">
+						<!--<i class="fa fa-upload"></i>-->
+					</input>
+			</div>	<p></p>				
+	</div>
+			
+	</form>
+
+	
+</div>
+

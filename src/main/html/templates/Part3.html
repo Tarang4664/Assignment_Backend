@@ -1,0 +1,43 @@
+<div class="form-inline">
+    <label>*Domain Interest:</label>
+
+    <selectize config='itDomainsConfig' options='itDomainOptions' ng-model="$parent.itDomain"></selectize>
+    <selectize config='nonItDomainsConfig' options='nonItDomainOptions' ng-model="$parent.nonItDomain"></selectize>
+    <div class="has-error" ng-show="$parent.domainMessage" ><p class="help-block">{{$parent.domainMessage}}</p>
+        <p></p></div>
+    <p></p>
+
+
+    <label>*Functional Interest:</label>
+
+    <selectize config='functionalInterestConfig' options='functionalInterestOptions' ng-model="$parent.functionalInterest"></selectize>
+    <div class="has-error" ng-show="$parent.interestMessage" ><p class="help-block">{{$parent.interestMessage}}</p>
+        <p></p></div>
+    <p></p>
+    <div class="field-separator"></div>
+
+    <p></p>
+
+    <p></p>
+    <div><label>*Paid/Free:</label> &nbsp; &nbsp;
+
+        <input type="radio" name="score" value="Paid" ng-model='$parent.pf' required> Paid &nbsp; &nbsp;
+        <input type="radio" name="score" value="Free" ng-model='$parent.pf'> Free</div>
+    <p></p>
+
+    <div><label>Offerings:</label>
+        <label style="font-weight: normal" ng-repeat="offer in $parent.offers">
+            &nbsp;
+            <input
+                type="checkbox"
+                name="selectedOffers[]"
+                value="{{offer.name}}"
+                ng-model="offer.selected"
+                > {{offer.name}}
+
+        </label>	
+        <p></p>
+
+
+    </div>
+</div>

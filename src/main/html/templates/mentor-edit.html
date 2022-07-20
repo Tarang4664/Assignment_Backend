@@ -1,0 +1,164 @@
+
+<div class="section" ng-controller="EditOpportunityController">
+    <div class="loading-spiner-holder" data-loading ></div>
+
+    <div class="left-section left-section-inner">
+
+        <form name="form" role="form"> <!--ng-submit="postOpportunity(form.$valid)"-->
+            <div>
+                <h4 class="inner-head">Look for Mentor</h4>
+            </div>
+
+
+            <div class="search-form">
+
+                <label>*Summary:</label>
+                <div ng-class="{ 'has-error': form.positionName.$touched && form.positionName.$invalid}">
+                    <textarea class= "form-control" name="positionName" rows="5" maxlength="1000" cols="2" ng-model="opp.summary" placeholder="Enter Summary" required=""></textarea>
+                    <div class="help-block" ng-messages="form.positionName.$error" ng-if="form.positionName.$touched">
+                        <p ng-message="required">This field is required!</p>
+                    </div>
+                </div>
+
+                <p></p>
+
+                <label>*Opportunity Description:</label>
+                <div ng-class="{ 'has-error': form.jobDescription.$touched && form.jobDescription.$invalid}">
+                    <textarea class= "form-control" name="jobDescription" rows="5" maxlength="7000" cols="2" ng-model="opp.opportunityDescription" placeholder="Enter Summary" required=""></textarea>
+                    <div class="help-block" ng-messages="form.jobDescription.$error" ng-if="form.jobDescription.$touched">
+                        <p ng-message="required">This field is required!</p>
+                    </div>
+                </div>
+                <p></p>
+
+                <div class="form-inline">
+                    <label>*Key Skills:</label>
+                    <div  ng-class="{
+                    'has-error'
+                    : skillMessage}"><selectize config='skillConfig' options='skillOptions' ng-model="opp.keySkills"></selectize>
+
+
+                        <p ng-show="skillMessage" class="help-block">{{skillMessage}}</p>
+
+                    </div>
+                </div><p></p>
+
+
+                <label>*Domain Interest:</label>
+                <div  ng-class="{
+                    'has-error'
+                    :domainMessage}">
+                    <selectize config='domainsConfig' options='domainOptions' ng-model="opp.domainInterest"></selectize>
+                    <div class="has-error" ng-show="$parent.domainMessage" ><p class="help-block">{{$parent.domainMessage}}</p>
+
+                    </div>
+                    <p></p>
+                    <p></p>
+
+
+                    <label>*Functional Interest:</label>
+                    <!--<dropdown-multiselect class="btn-alignment" name="functionInterest" model="selectedfunctionInterests" placeholder="Select IT Functions" options="functionInterests"></dropdown-multiselect>-->
+                    <div  ng-class="{
+                    'has-error'
+                    :interestMessage}">
+                        <selectize config='functionalInterestConfig' options='functionalInterestOptions' ng-model="opp.functionInterest"></selectize>
+                        <p ng-show="interestMessage" class="help-block">{{interestMessage}}</p>
+                        <p></p>
+                    </div>
+
+
+                    <div class="field-separator"></div>
+
+                    <p></p>
+                    <div>
+                        <h4 class="inner-head">Eligibility Criteria</h4>
+
+                        <b>*Add Qualification</b>
+                        <div ng-show="opp.eduDetails[0]">
+
+                            <selectize name="major" config='majorConfig' options='majorOptions' ng-model='opp.eduDetails[0].major'></selectize>
+                            <p ng-show="majorMessage" class="msg-error">{{majorMessage}}</p>
+                            <selectize name="course" config='courseConfig' options='courseOptions' ng-model='opp.eduDetails[0].qualification'></selectize>
+                            <p ng-show="courseMessage" class="msg-error">{{courseMessage}}</p>
+                            <selectize name="stream" config='streamConfig' options='streamOptions' ng-model='opp.eduDetails[0].streams'></selectize>
+                            <p ng-show="streamMessage" class="msg-error">{{streamMessage}}</p>                                                 
+
+
+                            <!--                <input type="text" class="form-control" ng-model="opp.eduDetails[0].percentageMin" placeholder="Max.CGPA / Percentage" name="maxGrade"> -->
+                            <!--<a href=""><img class="add right" src="images/add.png" ng-click="opp.eduDetails.length = 2"/></a>Add-->
+                        </div><p></p>
+
+
+
+
+
+                    </div>
+                    <!--<div class="field-separator"></div><p><p>-->
+                    <div class="form-inline">
+
+
+
+                        <label>*Min. Experience:</label>&nbsp;
+                        <div ng-class="{
+                'has-error': form.minExp.$touched && for m.minExp.$invalid}">
+                            <select class="form-inline form-control" style="width:100px;" required name="minExp" ng-model="opp.minExp">
+                                <option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+                                <option value="0">0 year</option><option value="1">1 year</option><option value="2">2 years</option>
+                                <option value="3">3 years</option><option value="4">4 years</option><option value="5">5 years</option>
+                                <option value="6">6 years</option><option value="7">7 years</option><option value="8">8 years</option>
+                                <option value="9">9 years</option><option value="10">10 years</option><option value="15">15 years</option>
+                                <option value="20">20 years</option><option value="25">25 years</option>
+                            </select>
+
+                            <div class="help-block" ng-messages="form.minExp.$error" ng-if="form.minExp.$touched">
+                                <p ng-message="required">Select Min Experience</p>
+                            </div>
+                        </div>          
+                        <label>*Max. Experience:</label>&nbsp;
+                        <div ng-class="{
+                'has-error': form.maxExp.$touched && for m.maxExp.$invalid}">
+                            <select class="form-inline form-control" style="width:100px;" required name="maxExp" ng-model="opp.maxExp">
+                                <option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+                                <option value="0">0 year</option><option value="1">1 year</option><option value="2">2 years</option>
+                                <option value="3">3 years</option><option value="4">4 years</option><option value="5">5 years</option>
+                                <option value="6">6 years</option><option value="7">7 years</option><option value="8">8 years</option>
+                                <option value="9">9 years</option><option value="10">10 years</option><option value="15">15 years</option>
+                                <option value="20">20 years</option><option value="25">25 years</option>
+                            </select>
+                            <div class="help-block" ng-messages="form.maxExp.$error" ng-if="form.maxExp.$touched">
+                                <p ng-message="required">Select Max Experience</p>
+                            </div>
+                        </div> 
+
+                    </div><p></p>
+                    <div class="field-separator"></div><p><p>
+
+
+
+
+
+
+                    <div class="form-footer">
+                        <input type="submit" class="btn btn-primary" ng-show="opp.action === 'edit'" ng-disabled="form.$invalid" value="Update Opportunity" ng-click="EditOpportunity()"><!--ng-disabled="form.$invalid"-->
+                        <input type="submit" class="btn btn-primary" ng-show="opp.action === 'copy'" ng-disabled="form.$invalid"  value="Post Opportunity" ng-click="PostNewOpportunity()"><!--ng-disabled="form.$invalid"-->
+                        <input type="button" class="btn btn-danger" ng-click="back()" value="Back"><!--ng-disabled="form.$invalid"-->
+                        <!--<i class="fa fa-upload"></i>-->
+
+                    </div>	<p></p>	
+
+
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <ng-include src="'templates/right-menu.html'"></ng-include>	
+
+    <ng-include src="'templates/footer.html'"></ng-include>
+
+</div>
+
+
+

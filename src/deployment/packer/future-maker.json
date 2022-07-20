@@ -1,0 +1,100 @@
+{
+	"builders": [
+		{
+			"type": "amazon-ebs",
+			"name": "aws",
+            "region": "ap-south-1b",
+            "source_ami": "ami-0ad42f4f66f6c1cc9",
+            "instance_type": "t2.micro",
+            "ssh_username": "ec2-user",
+            "ami_name": "accounting-dev",
+            "tags": {
+                "OS_Version": "linux"
+             }
+		}
+	],
+	"provisioners": [
+		{
+			"type": "shell",
+			"inline": [
+				"yum install -y tar",
+				"yum install -y wget",
+				"yum install -y unzip",
+				"yum install -y logrotate",
+				"rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm",
+				"yum install -y puppet",
+				"puppet module install puppetlabs-firewall",
+				"yum install -y nginx",
+				"mkdir /etc/nginx/cert"
+			]
+		},
+		{
+			"type": "shell",
+			"scripts": [
+				"scripts/jre8-install.sh",
+				"scripts/jce8-install.sh"
+			]
+		},
+		{
+			"type": "shell",
+			"inline": [
+				"wget -P /home/data/www https://github.com/swagger-api/swagger-ui/archive/v2.1.0-M2.tar.gz",
+				"tar -xvzf /home/data/www/v2.1.0-M2.tar.gz -C /home/data/www",
+				"mv /home/data/www/swagger-ui-2.1.0-M2 /home/data/www/swagger-ui",
+				"mv /home/data/www/swagger-ui/dist /home/data/www/swagger-ui/swagger"
+			]
+		},
+        {
+          "type": "shell",
+          "inline": [
+            "puppet module install puppetlabs-stdlib"
+          ]
+        },
+        {
+          "type": "file",
+          "source": "../nginx/server.crt",
+          "destination": "/etc/nginx/cert/server.crt"
+        },
+        {
+          "type": "file",
+          "source": "../nginx/server.key",
+          "destination": "/etc/nginx/cert/server.key"
+        },
+        {
+          "type": "file",
+          "source": "../puppet/future-maker.pp"
+        },
+        {
+          "type": "file",
+          "source": "../../../build/distributions/future-maker-0.1.0-1.noarch.rpm",
+          "destination": "/opt/future-maker-0.1.0-1.noarch.rpm"
+        },
+        {
+          "type": "shell",
+          "inline": ["rpm -ivh /opt/future-maker-0.1.0-1.noarch.rpm"]
+        },
+        {
+          "type": "shell",
+          "inline": [
+            "yum -y install policycoreutils-python"
+          ]
+        },
+        {
+          "type": "file",
+          "source": "../aws/mongodb.repo",
+          "destination": "/etc/yum.repos.d/mongodb.repo"
+        },
+        {
+          "type": "shell",
+          "inline": [
+            "mkdir -p /data/db",
+            "yum install -y mongodb-org",
+            "semanage port -a -t mongod_port_t -p tcp 27017"
+          ]
+        },
+        {
+          "type": "shell",
+          "inline": ["rm -f ~/.ssh/authorized_keys"]
+        }
+	]
+}

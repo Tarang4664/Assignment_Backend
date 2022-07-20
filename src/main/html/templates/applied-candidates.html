@@ -1,0 +1,459 @@
+
+<div  ng-controller="AppliedCandidatesController">
+    <div class="loading-spiner-holder" data-loading ></div>
+    <div class="section">
+        <div class="left-section left-section-inner">
+            <form class="form-inline" name="form">
+
+
+                <div align="right">
+                    <button type="button"class=" btn btn-default btn-sm" ng-click="clicked()">Back</button> &nbsp;
+
+                </div>
+                <div class="ui-grid-top-panel"><strong>Applications Found:</strong>&nbsp;
+                    {{searches.length}} candidate(s) applied for your opportunity</div>				
+
+                <!--		<div ui-grid="gridSearch" ui-grid-selection ui-grid-exporter ui-grid-pagination ui-grid-resize-columns id="grid1" class="ui-grid" style="height: 600px;">
+                                </div>-->
+
+                <ul class="pagination pagination-ul">
+                    <li ng-repeat="r in searches">
+                        <div class="block">
+                            <div class="block-header"> 
+
+                                <div class="cand-name">
+
+                                    <table class="table">
+                                        <tr><td><label class="name">
+
+
+
+                                                    <span class="glyphicon glyphicon-user"  ng-show="r.object.firstName" style="color:#7a7e87" aria-hidden="true"></span>
+                                                    <span class="glyphicon glyphicon-education" ng-show="r.object.name" style="color:#7a7e87" aria-hidden="true"></span>
+                                                    <span class="glyphicon glyphicon-check" ng-show="r.object.generalOpportunityFields.summary || r.object.mentorSummary || r.object.eventFields.eventSummary || r.object.guestFields.guestTopic" style="color:#7a7e87" aria-hidden="true"></span>
+                                                    <span class="sr-only">icon for candidate</span>
+                                                </label>
+                                                {{r.object.firstName + ' ' + r.object.lastName}}{{r.object.name}}{{r.object.mentorSummary}}{{r.object.generalOpportunityFields.summary}}{{r.object.guestFields.guestTopic}}{{r.object.eventFields.eventSummary}} </td><td>
+                                                <span class="phno glyphicon glyphicon-earphone" ng-show="r.object.contactNumber1 || r.object.contactNumber || r.object.phone" style="color:#7a7e87" aria-hidden="true"></span>
+                                                <span class="phno fa fa-eye" ng-show="r.object.generalOpportunityFields.noOfPositions || r.object.mentorMaxExp || r.object.menteeMaxExp" style="color:#7a7e87" aria-hidden="true"></span>
+                                                <span class="phno fa fa-calendar" ng-show="r.object.eventFields.eventDate || r.object.guestFields.guestInviteDate" style="color:#7a7e87" aria-hidden="true"></span>
+                                                <label ng-show="r.object.mentorMaxExp || r.object.menteeMaxExp">{{(r.object.mentorMinExp||r.object.menteeMinExp) + ' to ' + (r.object.mentorMaxExp||r.object.menteeMaxExp) + ' year(s)'}}</label>
+                                                <label>
+                                                    {{r.object.contactNumber1}} {{r.object.phone}} {{r.object.contactNumber}}{{r.object.generalOpportunityFields.noOfPositions}}{{r.object.eventFields.eventDate}}{{r.object.guestFields.guestInviteDate}}</label><label ng-show="r.object.generalOpportunityFields.noOfPositions">Position(s)</label>
+                                        </tr>
+                                        <tr ng-show="r.object.contactPerson"><td> <span class="glyphicon glyphicon-user" style="color:#7a7e87" aria-hidden="true"></span>Contact Person</td><td>{{r.object.contactPerson}}</td></tr>
+                                        <tr><td><span class="fa fa-envelope" ng-show="r.object.emailId" style="color:#7a7e87"></span>
+
+                                                <label  ng-show="r.object.emailId"><a ng-href="mailto:{{r.object.emailId}}" target="_top">{{r.object.emailId}}
+                                                    </a> </label>
+                                                <span class="fa fa-user" ng-show="r.object.ownerFields.name" style="color:#7a7e87"></span>
+
+                                                <label  ng-show="r.object.ownerFields.name"><label>{{r.object.ownerFields.name}}
+                                                    </label> </label>
+                                            </td><td><span class="fa fa-map-marker" style="color:#7a7e87" ng-show="r.object.addressDetails.city"></span>
+                                                <span class="fa fa-money" style="color:#7a7e87" ng-show="r.object.generalOpportunityFields.budget || r.object.eventFields.eventPaidOrFree || r.object.guestFields.guestPaidOrFree || r.object.paidOrFreeConsult"></span>
+
+                                                <label ng-show="r.object.generalOpportunityFields.budget">{{r.object.generalOpportunityFields.budget + ' lpa'}}  <span class="fa fa-inr" style="color:#7a7e87" ng-show="r.object.generalOpportunityFields.currency === 'INR'"></span> <span class="fa fa-usd" style="color:#7a7e87" ng-show="r.object.generalOpportunityFields.currency === 'USD'"></span></label>
+                                                <label ng-show="r.object.addressDetails.city || r.object.eventFields.eventPaidOrFree || r.object.guestFields.guestPaidOrFree || r.object.paidOrFreeConsult">{{r.object.addressDetails.city}}{{r.object.eventFields.eventPaidOrFree}}{{r.object.guestFields.guestPaidOrFree}}{{r.object.paidOrFreeConsult}}</label>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                    <div class="right" >
+                                       
+                                       <a  target="_blank" class="btn btn-default link-button" style="padding:5px;" ng-href="#/profile?userId={{r.candidateId}}&userType={{r.object.userType}}"> <i class="fa fa-eye"></i> View Profile And Resume</a>
+
+                                    </div>
+                                </div>
+
+                                <label class="cand-ug-year-pass" ng-show="r.object.airMain || r.object.airAdv"><strong>AIR(GEN.):</strong>
+                                    {{r.object.airMain|| r.object.airAdv}}<br>	</label>
+
+                                <!------------------------- Mentorship Details ----------------------->
+                                <div class="cand-inst-name" ng-show="r.object.mentorTypeFields">
+                                    <label class="cand-inst-name" ><i class="fa fa-comment" style="color:#7a7e87"></i><strong> Description:</strong></label>
+                                    {{r.object.mentorOpportunityDescription}}
+                                    <br>
+
+
+                                    <strong ng-show="r.object.mentorEduDetails">Desired Mentor Profile</strong><br  ng-show="r.object.mentorEduDetails"><br  ng-show="r.object.mentorEduDetails">
+                                    <strong ng-show="r.object.menteeEduDetails">Desired Mentee Profile</strong><br ng-show="r.object.menteeEduDetails"><br ng-show="r.object.menteeEduDetails">
+                                    <label ng-show="r.object.menteeInstitutes" class="cand-inst-name" ><i class="fa fa-chain" style="color:#7a7e87"></i><strong> Mentee Institutes:</strong> </label>
+                                    <label ng-repeat="inst in r.object.menteeInstitutes" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{inst}}</label>
+
+
+
+
+                                    <div class=" education cand-inst-name" ng-repeat="education in (r.object.mentorEduDetails||r.object.menteeEduDetails)">
+
+                                        <label ng-show="r.object.areaOfExpertise"><i class="fa fa-bars" style="color:#7a7e87"></i> <strong>Key Skills:</strong></label>
+
+                                        <label ng-repeat="skl in r.object.areaOfExpertise" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ skl}}</label>
+
+                                        <br><label><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i> <strong> Qualification:</strong></label>
+
+                                        <label ng-repeat="qua in education.qualification" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ qua}}</label>
+                                        <br>
+                                        <label><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i><strong> Major(s):</strong> </label>
+
+                                        <label ng-repeat="maj in education.major" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ maj}}</label>
+
+                                        <br>
+                                        <label><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i><strong> Course(s):</strong></label>
+
+                                        <label ng-repeat="str in education.streams" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ str}}</label>
+
+                                        <br>
+                                        <label style="width: 50%"><i class="fa fa-calendar" style="color:#7a7e87"></i><strong> Year Of Passing:</strong>
+                                            {{education.yop + ' and above'}}</label>
+
+
+                                        <label><i class="fa fa-pencil" style="color:#7a7e87"></i><strong>Min CGPA/Percentage:</strong></label>
+                                        {{education.cgpaMin + '/' + education.percentageMin}} <br>
+
+                                    </div>
+                                    <br>
+                                    <label ng-show="r.object.itDomain"><i class="fa fa-check" style="color:#7a7e87"></i><strong> IT Domain(s):</strong></label>
+                                    <label ng-repeat="it in r.object.itDomain" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ it}}</label>
+                                    <br ng-show="r.object.itDomain">
+                                    <label ng-show="r.object.nonItDomain"><i class="fa fa-check-circle-o" style="color:#7a7e87"></i><strong> Non IT Domain:</strong></label>
+                                    <label ng-repeat="nit in r.object.nonItDomain" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ nit}}</label>
+                                    <br ng-show="r.object.nonItDomain">
+                                    <label ng-show="r.object.functionInterest"><i class="fa fa-check-square-o" style="color:#7a7e87"></i><strong>Functional Domain:</strong>
+                                        <label ng-repeat="fd in r.object.functionInterest" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fd}}</label></label>
+
+                                </div>
+
+
+                                <!------------------------ job internship details ----------------->
+
+                                <div class="cand-inst-name" ng-show="r.object.generalOpportunityFields">
+                                    <label style="width: 50%"><i class="glyphicon glyphicon-calendar"  style="color:#7a7e87"></i><strong>Active Since:</strong>
+                                        {{r.object.creationDate|limitTo :11:0}} </label>
+
+                                    <label ><i class="fa fa-calendar" style="color:#7a7e87"></i><strong> Active Till:</strong></label>
+                                    {{r.object.lastDateToApply}}
+                                    <br>
+                                    <label ><i class="fa fa-bar-chart-o" style="color:#7a7e87"></i><strong> Experience Required:</strong></label>
+                                    {{r.object.generalOpportunityFields.minExperience + ' to ' + r.object.generalOpportunityFields.maxExperience + ' year(s)'}}
+                                    <br>
+                                    <label ><i class="fa fa-comment" style="color:#7a7e87"></i><strong> Description:</strong></label>
+                                    {{r.object.generalOpportunityFields.opportunityDescription}}
+                                    <br>
+                                    <label ng-show="r.object.generalOpportunityFields.skillsRequire"><i class="fa fa-plus-circle" style="color:#7a7e87"></i> <strong>Skills Required:</strong>
+
+                                        <label ng-repeat="sks in r.object.generalOpportunityFields.skillsRequire" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ sks}}</label></label>
+                                    <br>
+                                    <label ><i class="fa fa-map-marker" style="color:#7a7e87"></i><strong> Location(s):</strong></label>
+                                    <label ng-repeat="loc in r.object.generalOpportunityFields.opportunityLocation" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ loc}}</label>
+                                    <br>
+                                    <label style="width: 50%" ng-show="r.object.generalOpportunityFields.startDate"><i class="fa fa-calendar" style="color:#7a7e87"></i><strong> Start Date:</strong>
+                                        {{ r.object.generalOpportunityFields.startDate}}</label>
+
+                                    <label ng-show="r.object.generalOpportunityFields.endDate"><i class="fa fa-calendar" style="color:#7a7e87"></i><strong> Start Date:</strong>
+                                        {{ r.object.generalOpportunityFields.endDate}}</label>
+
+                                    <br>
+                                    <label ng-show="r.object.generalOpportunityFields.selectionProcess"><i class="fa fa-check" style="color:#7a7e87"></i><strong> Selection Process:</strong>
+                                        {{r.object.generalOpportunityFields.selectionProcess}}</label>
+                                    <br>
+
+                                    <strong>Desired Candidate Profile</strong>
+
+                                    <div class=" education cand-inst-name" ng-repeat="education in r.object.generalOpportunityFields.eduDetails">
+                                        <label><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i> <strong>Qualification:</strong></label>
+                                        <label ng-repeat="qua in education.qualification" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ qua}}</label>
+                                        <br>
+                                        <label><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i><strong> Major(s):</strong>
+
+                                            <label ng-repeat="maj in education.major" >
+                                                {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ maj}}</label>
+                                        </label>
+                                        <br>
+                                        <label><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i><strong> Course(s):</strong>
+
+                                            <label ng-repeat="str in education.streams" >
+                                                {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ str}}</label>
+                                        </label>
+                                        <br>
+                                        <label style="width: 50%"><i class="fa fa-calendar" style="color:#7a7e87"></i><strong> Year Of Passing:</strong>
+                                            {{education.yop + ' and above'}}</label>
+
+
+                                        <label><i class="fa fa-pencil" style="color:#7a7e87"></i><strong>Min CGPA/Percentage:</strong></label>
+                                        {{education.cgpaMin + '/' + education.percentageMin}} <br>
+
+                                    </div> 
+
+                                </div>
+
+                                <!------------ event details------------>
+
+                                <div class="cand-inst-name" ng-show="r.object.eventFields">
+
+
+                                    <label ng-show="r.object.eventFields.eventOfferings"><i class="fa fa-gift" style="color:#7a7e87"></i> <strong>Event Offerings:</strong>
+
+                                        <label ng-repeat="offers in r.object.eventFields.eventOfferings" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ offers}}</label></label>
+                                    <br>
+                                    <label ><i class="fa fa-check" style="color:#7a7e87"></i><strong> IT Domain(s):</strong></label>
+                                    <label ng-repeat="it in r.object.eventFields.eventItDomainDetails" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ it}}</label>
+                                    <br>
+                                    <label ng-show="r.object.eventFields.eventNonItDomainDetails"><i class="fa fa-check-circle-o" style="color:#7a7e87"></i><strong> Non IT Domain:</strong>
+                                        <label ng-repeat="nit in r.object.eventFields.eventNonItDomainDetails" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ nit}}</label></label>
+                                    <br>
+                                    <label ng-show="r.object.eventFields.eventFunctionDetails"><i class="fa fa-check-square-o" style="color:#7a7e87"></i><strong>Functional Domain:</strong>
+                                        <label ng-repeat="fd in r.object.eventFields.eventFunctionDetails" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fd}}</label></label>
+
+
+                                </div>
+
+                                <!--------------------- Guest Fields ------------------->
+
+                                <div class="cand-inst-name" ng-show="r.object.guestFields">
+
+
+                                    <label ng-show="r.object.lastDateToApply"><i class="fa fa-calendar" style="color:#7a7e87"></i> <strong>Last Date To Apply:</strong>
+
+                                        <label >
+                                            {{r.object.lastDateToApply}}</label></label>
+                                    <br>
+
+                                    <label ng-show="r.object.guestFields.guestOfferings"><i class="fa fa-gift" style="color:#7a7e87"></i> <strong>Guest Offerings:</strong>
+
+                                        <label ng-repeat="offers in r.object.guestFields.guestOfferings" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ offers}}</label></label>
+                                    <br>
+                                    <label ng-show="r.object.guestFields.guestKeySkills"><i class="fa fa-bars" style="color:#7a7e87"></i> <strong>Key Skills:</strong>
+
+                                        <label ng-repeat="skl in r.object.guestFields.guestKeySkills" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ skl}}</label></label>
+                                    <br>
+                                    <label ><i class="fa fa-bar-chart-o" style="color:#7a7e87"></i><strong> Experience Required:</strong></label>
+                                    {{r.object.guestFields.guestMinExp + ' to ' + r.object.guestFields.guestMaxExp + ' year(s)'}}
+                                    <br>
+                                    <label ><i class="fa fa-check" style="color:#7a7e87"></i><strong> IT Domain(s):</strong></label>
+                                    <label ng-repeat="it in r.object.guestFields.guestItDomain" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ it}}</label>
+                                    <br>
+                                    <label ng-show="r.object.guestFields.guestNonItDomain"><i class="fa fa-check-circle-o" style="color:#7a7e87"></i><strong> Non IT Domain:</strong>
+                                        <label ng-repeat="nit in r.object.guestFields.guestNonItDomain" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ nit}}</label></label>
+                                    <br>
+                                    <label ng-show="r.object.guestFields.guestFunction"><i class="fa fa-check-square-o" style="color:#7a7e87"></i><strong>Functional Domain:</strong>
+                                        <label ng-repeat="fd in r.object.guestFields.guestFunction" >
+                                            {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fd}}</label></label>
+
+
+                                </div>
+                                <div class="cand-inst-name">
+                                    <label ng-show="r.object.eduDetails"><strong> Educational Details:</strong>
+                                    </label>
+                                </div>
+                                <div class=" education cand-inst-name" ng-repeat="education in r.object.eduDetails">
+
+                                    <label style="width: 40%"><i class="glyphicon glyphicon-education" style="color:#7a7e87"></i><strong> Degree:</strong>
+                                        {{education.degree}} </label>
+
+                                    <label ><i class="fa fa-pencil-square-o" style="color:#7a7e87"></i><strong> Course:</strong></label>
+                                    {{education.fieldOfStudy}}
+                                    <br>
+
+
+                                    <label><i class="fa fa-building-o" style="color:#7a7e87"></i> <strong>School:</strong></label>
+                                    {{education.school}} <br>
+                                    <label><i class="fa fa-pencil" style="color:#7a7e87"></i><strong> CGPA/Percentage:</strong></label>
+                                    {{education.grade}} <br>
+                                    <label style="text-align: left; width:auto"><i class="fa fa-calendar-o" style="color:#7a7e87"></i> <strong>Start Year:</strong>
+                                        {{education.startDate}} </label>
+                                    <label style="text-align: right; width:50%"><i class="fa fa-calendar-o" style="color:#7a7e87"></i> <strong>End Year:</strong>
+                                        {{education.endDate}} </label>
+                                </div> 
+                                <div class="cand-inst-name">
+
+                                    <label ng-show="r.object.employmentDetails"><strong> Employment Details:</strong>
+                                    </label>
+                                </div>
+                                <div class=" education cand-inst-name" ng-repeat="exp in r.object.employmentDetails">
+
+                                    <label style="width: 40%"><i class="glyphicon glyphicon-check" style="color:#7a7e87"></i><strong> Title:</strong>
+                                        {{exp.title}} </label>
+
+                                    <label ><i class="fa fa-building-o" style="color:#7a7e87"></i><strong> Company Name:</strong></label>
+                                    {{exp.companyName}}
+                                    <br>
+
+
+                                    <label><i class="fa fa-clock-o" style="color:#7a7e87"></i> <strong>Duration:</strong></label>
+                                    {{exp.startJobMonth + ' ' + exp.startJobYear + ' to '}}<span ng-if="exp.endJobMonth">{{ exp.endJobMonth + ' ' + exp.endJobYear}}</span><span ng-if="!exp.endJobMonth">Till Date.</span> <br>
+                                    <label ng-show="exp.description"><i class="fa fa-pencil" style="color:#7a7e87" ></i><strong> Description:</strong>
+                                        {{exp.description}} <br></label>
+                                    <label style="text-align: left; width:auto"><i class="fa fa-map-marker" style="color:#7a7e87"></i> <strong>Location:</strong>
+                                        {{exp.location}} </label>
+
+                                </div> 
+
+
+
+                                <!--						<div class="cand-year-pass">
+                                                                                        <label><i class="fa fa-calendar"></i> Year Of Passing:</label>
+                                                                                        {{r.object.ugYop}}
+                                                                                </div>-->
+
+
+                                <div class="cand-interest" ng-show="r.object.areaOfExpertise">
+                                    <label><strong>Skills:</strong></label>							
+                                    <label ng-repeat="skill in r.object.areaOfExpertise" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ skill}}</label>						
+                                </div> 
+
+                                <div class="cand-interest" ng-show="r.object.website">
+                                    <label><strong>Website:</strong> <a href="{{r.object.website}}" target="_blank">{{r.object.website}}</a></label>						
+                                </div> 
+                                <div class="cand-interest" ng-show="r.object.functionInterest">
+                                    <label><strong>Functional Interest:</strong></label>							
+                                    <label ng-repeat="fi in r.object.functionInterest" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ fi}}</label>						
+                                </div> 
+                                <div class="cand-interest" ng-show="r.object.interest">
+                                    <label><strong>Interests:</strong></label>							
+                                    <label ng-repeat="i in r.object.interest" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ i}}</label>						
+                                </div> 
+
+                                <div class="cand-interest" ng-show="r.object.domainInterest">
+                                    <label><strong>Domain Interest:</strong></label>
+                                    <label ng-repeat="domains in r.object.domainInterest" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ domains||'None'}}</label>						
+                                </div>
+                                <div class="cand-interest" ng-show="r.object.itDomain">
+                                    <label><strong>IT Domains:</strong></label>
+                                    <label ng-repeat="domains in r.object.itDomain" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ domains||'None'}}</label>						
+                                </div>
+                                <div class="cand-interest" ng-show="r.object.nonItDomain">
+                                    <label><strong>Non IT Domains:</strong></label>
+                                    <label ng-repeat="domains in r.object.nonItDomain" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ domains||'None'}}</label>						
+                                </div>
+                                <div class="cand-interest" ng-show="r.object.streams">
+                                    <label><strong>Streams:</strong></label>
+                                    <label ng-repeat="streams in r.object.streams" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ streams||'None'}}</label>						
+                                </div>
+
+                                <div class="comment cand-interest" ng-show="r.object.projSummary">
+                                    <label ><strong>Project Summary:</strong></label>
+                                    {{r.object.projSummary}}
+                                </div>
+
+                                <div class="cand-interest" ng-show="r.object.preferLocation">
+                                    <label><i class="fa fa-map-marker" style="color:#7a7e87"></i><strong> Preferred Location(s):</strong></label>
+                                    <label ng-repeat="location in r.object.preferLocation" >
+                                        {{$first ? ' ' : $last ? '&nbsp;and ' : ', '}}{{ location||'None'}}</label>
+                                </div> 
+
+                                <div ng-show="r.appliedDate" class="cand-inst-name" style="text-align: center;">
+                                    <hr>
+                                    <b>Applied On: {{getDateFormat(r.appliedDate) | date:'dd-MMM-yyyy'}}</b>
+                                </div>
+                                <div class="center">
+                                    <label class="v-separator">
+
+                                        <!--<span class="sr-only">icon for "save to folder" </span> -->
+                                        <button ng-show="r.applicationStatus === 'pending' || r.applicationStatus === 'viewed'" class="btn btn-dropbox" ng-click="respond('shortlisted', r.candidateId, r.object.emailId)" ><span class="fa fa-check" aria-hidden="true"></span> Shortlist</button> 
+
+                                    </label>
+                                    <label style="color: green; font-size: 18px" ng-show="r.applicationStatus === 'shortlisted'">{{r.applicationStatus}}</label>
+                                    <label style="color: red;font-size: 18px" ng-show="r.applicationStatus === 'rejected'">{{r.applicationStatus}}</label>
+                                    <label class="v-separator">
+
+                                        <!--<span class="sr-only">icon for "save to folder" </span> -->
+                                        <button class="btn btn-danger" ng-show="r.applicationStatus === 'pending' || r.applicationStatus === 'viewed'" ng-click="respond('rejected', r.candidateId, r.object.emailId)" ><span class="fa fa-times-circle" aria-hidden="true"></span> Reject</button> 
+
+                                    </label> 
+
+                                </div>
+
+
+                                <!--                                <div class="block-footer">
+                                                                    <div class="cand-contact">
+                                                                        <span class="glyphicon glyphicon-earphone" style="color:#7a7e87" aria-hidden="true"></span>
+                                
+                                                                        <label>Contact:
+                                                                            {{r.object.contactNumber1}}</label>
+                                                                        <br>
+                                                                        <label class="cand-email">
+                                                                            <span class="glyphicon glyphicon-envelope" style="color:#7a7e87" aria-hidden="true"></span>
+                                
+                                                                            E-mail:
+                                                                            <a ng-href="mailto:{{candidate.eMail}}?Subject=Regarding%20Job" target="_top">
+                                                                                {{r.object.emailId}}
+                                                                            </a></label> 
+                                                                    </div>
+                                                                </div>	-->
+
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+
+                                    //$(".comment").shorten();
+                                    $(".comment").shorten({
+                                    "showChars": 50,
+                                            "moreText": "See More",
+                                            "lessText": "Less",
+                                    });
+                                    });
+                                </script>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+
+                                    //$(".comment").shorten();
+                                    $(".education").shorten({
+                                    "showChars": 500,
+                                            "moreText": "See More",
+                                            "lessText": "Less",
+                                    });
+                                    });
+                                </script>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+
+                                    //$(".comment").shorten();
+                                    $(".streams").shorten({
+                                    "showChars": 100,
+                                            "moreText": "See More",
+                                            "lessText": "Less",
+                                    });
+                                    });
+                                </script>
+
+
+
+
+                            </div>
+
+                    </li> 
+                </ul> 
+                <!--			<p> 	name from backend is {{name}} </p>-->
+
+        </div>
+        </form>			
+        <ng-include src="'templates/right-menu.html'"></ng-include>	
+        <ng-include src="'templates/footer.html'"></ng-include>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+
+<div ng-controller="MentSearchController">
+<div class="loading-spiner-holder" data-loading ></div>
+    <!-- heading of search type(campus recruitment,internship,research project)-->
+    <form name="form" class="form-inline">
+
+        <div>
+            <h4 class="inner-head" align="justify" class="panel-body">Search For Menteeship</h4>
+        </div>
+
+        <div class="search-form">
+            <div align="right">
+                <button type="button" class="search-button"  ng-click=" sendMenteeShipData()"><!--ng-disabled="form.$pristine"-->
+                    <i class="fa fa-search"></i> Search
+                </button></div><p></p>
+
+ <label> Title :</label>
+
+ <input type="text" min="1970" max="9999" class="form-control" placeholder="Title" ng-model="title">
+
+
+            <p></p>
+            <h4 class="inner-head">Eligibility Criteria</h4>
+
+            <b>*Add Qualification</b> 
+            <div >
+
+                <selectize name="major" config='majorConfig' options='majorOptions' ng-model='$parent.major'></selectize>
+                <selectize name="course" config='courseConfig' options='courseOptions' ng-model='$parent.course'></selectize>
+                <selectize name="stream" config='streamConfig' options='streamOptions' ng-model='$parent.stream'></selectize>             
+                <input type="text" class="form-control" ng-model='$parent.cgpaMin' placeholder="Min.CGPA" name="minGrade"><br> <p/>
+                <input type="text" class="form-control" ng-model='$parent.percentageMin' placeholder="Min. Percentage" name="maxGrade"><br> <p></p>
+
+                <div><label>Experience:</label></div>
+                <label> Min. :</label>
+
+                <input type="number" min="0" max="50" class="form-control" style="width:100px;" ng-model="menteeMinExp">
+
+                <label> Max. :</label>
+
+                <input type="number" min="0" max="50" class="form-control" style="width:100px;" ng-model="menteeMaxExp"><p></p>
+                <div class="field-separator"></div>
+                <p></p>
+                <div><label>Year Of Passing:</label></div>
+                <label> Min. :</label>
+
+                <input type="number" min="1970" max="9999" class="form-control" style="width:100px;" ng-model="yopMin">
+
+                <label> Max. :</label>
+
+                <input type="number" min="1970" max="9999" class="form-control" style="width:100px;" ng-model="yopMax"><p></p>
+
+                <div class="field-separator"></div>
+                <div class="form-footer">
+                    <button type="button" class="search-button"  ng-click=" sendMenteeShipData()"><!--ng-disabled="form.$pristine"-->
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>
+                <p></p>		
+
+            </div>		
+
+
+        </div>
+
+    </form>
+</div>

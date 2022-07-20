@@ -1,0 +1,21 @@
+defaultName: ManiBooks
+
+      
+logging:
+  appenders:
+    - type: console
+      threshold: INFO
+      target: stderr
+
+mongo:
+  db: "ManiBooks"
+  servers:
+    - host: "localhost"
+      port: 27017
+      
+server:
+  applicationConnectors:
+  - type: http
+    port: 8080
+
+   

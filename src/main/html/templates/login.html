@@ -1,0 +1,44 @@
+<!--<modal visible="showModal" style="display: none;">-->
+<div class="section">
+    <div class="login-section modal-content signup-card profile-section" ng-controller="LoginController">
+        <!--<div class="loading-spiner-holder" data-loading ></div>-->
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title signin-stuff">Login</h4>
+            <!-- <h4 class="modal-title signup-stuff">Sign Up</h4>-->
+        </div>
+        <div class="modal-body">
+
+
+
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <input placeholder="Username" ng-model="user.username" class="full-width has-padding has-border" id="signin-email" type="text" placeholder="Username">
+            </div>	
+
+
+
+            <div class="input-group" style="margin-top: 5px;">
+                <span class="input-group-addon"><i class="fa fa-key fa-fw "></i></span>
+                <input placeholder="Password" stopccp ng-model="user.password" class="full-width has-padding has-border" id="signin-password" type="{{inputType}}"  placeholder="Password">
+                <a href="" ng-model="passwordCheckbox" ng-init="visible = 'Show'" ng-click="hideShowPassword()" class="hide-password"><i ng-class="{'fa fa-eye fa-lg':vclass,'fa fa-eye-slash fa-lg':!vclass}" title="{{visible}}"></i>
+                </a>
+
+            </div>
+
+          
+
+        </div>
+        <div class="modal-footer">
+            <p class="signin-stuff">
+                <button type=submit class="btn-block btn btn-bitbucket" ng-click="loginUser();">Sign In</button><br>
+                Forgot your <a href="#/home/forgot-pass">password?</a> <br> New User <a href="#/home/user-profile">Free Sign up</a>
+            </p>
+
+           
+
+        </div>
+    </div>
+     <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+<!--</modal>-->

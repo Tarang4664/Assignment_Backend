@@ -1,0 +1,195 @@
+
+<div class="section reg-form" ng-controller="SignupController" ng-init="init('Institute')">
+<div class="loading-spiner-holder" data-loading ></div>
+	<!--<h1>Institute Registration</h1>-->
+	<h2 class="inner-head">Create Login Details</h2>
+	
+	<form name="form" ng-submit="submitSignupForm(form.$valid)" role="form" novalidate>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>Institute Id:</label></div>
+			
+			<div class="col-md-7"><span class="field-alert"> <font face="times new roman" size="2" color="blue">Your UserId will be emailed on your email id on successful resgitration. Please continue filling rest of the fields.</font></span></div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label for="pw1">*Password:</label></div>
+				<div class="col-md-7" ng-class="{ 'has-error': form.pw1.$touched && form.pw1.$invalid}">
+			<input type="password" id="pw1" name="pw1" ng-model="pw1" ng-minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control"  required="" autofocus>
+			<!--ng-pattern to set uppercase lowercase special character in password-->
+			  <div class="help-block" ng-messages="form.pw1.$error" ng-if="form.pw1.$touched">
+				<p ng-message="minlength">Password must contain 8 characters.</p>
+				<p ng-message="required">Password is required.</p>
+			</div>
+				<div ng-show="form.$submitted || form.pw1.$touched">
+				<span class="field-alert" ng-show="form.pw1.$error.pattern">
+				Password must contain atleast one number, one uppercase letter and one lowercase letter.
+				</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-5"><label for="pw2">*Confirm Password:</label></div>
+			<div class="col-md-7"  ng-class="{ 'has-error': form.pw2.$touched && form.pw2.$invalid && form.pw2.$submitted }">
+			<input type="password" id="pw2" name="pw2" ng-model="pw2" class="form-control" required="" pw-check="pw1">
+			    <div class="help-block" ng-messages="form.pw2.$error" ng-if="form.pw2.$touched ">
+					<p ng-message="minlength">Password must contain 8 characters.</p>
+					<p ng-message="required">Please confirm your Password.</p>
+					<p class="msg-error" ng-show="form.pw2.$error.pwmatch">Passwords didn't match.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="horizontal-line"></div>
+	
+	<h2 class="inner-head">Basic Information</h2>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Institute Name:</label></div>
+			<div class="col-md-7"  ng-class="{ 'has-error': form.instituteName.$touched && form.instituteName.$invalid }">
+			<input type="text" name="instituteName" class="form-control" ng-model="user.name" required="">
+				<div class="help-block" ng-messages="form.instituteName.$error" ng-if="form.instituteName.$touched">
+				<p ng-message="required"> Name of Institute is required.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Institute Type:</label></div>
+			<div class="col-md-7"  ng-class="{ 'has-error': form.optradio1.$touched && form.optradio1.$invalid && form.optradio1.$submitted }">
+			<label><input type="radio" name="optradio1" value="Autonomous " ng-model="user.type" required=""> Autonomous </label> &nbsp;&nbsp; 
+			<label><input type="radio" name="optradio1" value="Deemed university"  ng-model="user.type" required=""> Deemed university</label> &nbsp;&nbsp;
+			<label><input type="radio" name="optradio1" value="other"  ng-model="user.type" required=""> Other</label>
+					<div class="help-block" ng-messages="form.optradio1.$error" ng-if="form.optradio1.$touched">
+						<p ng-message="required">Type of Institute is required.</p>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Website:</label></div>
+			<div class="col-md-7" ng-class="{ 'has-error': form.website.$touched && form.website.$invalid}">
+			<input type="url" name="website" class="form-control" ng-model="user.website" required="" http-prefix >
+				<div class="help-block" ng-messages="form.website.$error" ng-if="form.website.$touched">
+					<p ng-message="required">Please enter Website.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Streams:</label></div>
+					<div class="col-md-7">
+						<selectize config='streamConfig' options='streamOptions' ng-model="stream"></selectize>
+						<p class="msg-error">{{streamMessage}}</p>
+					</div>
+		</div>	
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Interests:</label></div>
+			<div class="col-md-7">
+			<ul id="interestList">
+				<li ng-repeat="item in interest">
+				<input type="checkbox" id="{{item.name}}" value="{{item.name}}" ng-checked="selection.indexOf(item.name) > -1" ng-click="toggleSelection(item.name)" />
+				<label for="{{item.name}}"> {{item.name}}</label>
+				</li>
+			</ul>
+			  <p class="msg-error">{{interestMessage}}</p>
+		
+			</div>
+		</div>
+	</div>
+	
+	<div class="horizontal-line"></div>
+	
+	<h2 class="inner-head"> Contact Information </h2>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Email Id:</label></div>
+			<div class="col-md-7"  ng-class="{ 'has-error': form.email.$touched && form.email.$invalid}">
+			<input type="email" name="email" class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="example:abc@abc.com" placeholder="Enter E-mail ID" ng-model="user.email" required=""/>
+			<!--an email field that that must be in the following order: characters@characters.domain (characters followed by an @ sign, followed by more characters, and then a ".". After the "." sign, you can only write 2 to 3 letters from a to z:-->
+				<div class="help-block" ng-messages="form.email.$error" ng-if="form.email.$touched">
+					<p ng-message="required">Email Id is required.</p>
+					<p ng-message="email">Invalid Email Id.</p>
+					<p ng-message="pattern">Please enter an Email Id in format of characters@characters.domain.</p>	
+				</div>
+			</div>
+		</div>
+	</div>
+							
+	<ng-include src="'templates/addressDetails.html'"></ng-include>	
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Contact Person:</label></div>
+			<div class="col-md-7" ng-class="{ 'has-error': form.contactPerson.$touched && form.contactPerson.$invalid }">
+			<input type="text" name="contactPerson" class="form-control" ng-model="user.contactPerson" pattern="[a-zA-Z][a-zA-Z ]*" required="">
+				<div class="help-block" ng-messages="form.contactPerson.$error" ng-if="form.contactPerson.$touched">
+					<p ng-message="required">Please name of a Person to contact.</p>
+					<p ng-message="pattern">Name of person contain characters only</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="col-md-5"><label>*Contact Number:</label></div>
+			<div class="col-md-7" ng-class="{ 'has-error': form.contactNumber.$touched && form.contactNumber.$invalid }">
+			<input type="text" name="contactNumber" class="form-control" pattern="(?:\s+|)((0|(?:(\+|)91))(?:\s|-)*(?:(?:\d(?:\s|-)*\d{9})|(?:\d{2}(?:\s|-)*\d{8})|(?:\d{3}(?:\s|-)*\d{7}))|\d{10})(?:\s+|)" ng-model="user.contactNumber" required="">
+				<div class="help-block" ng-messages="form.contactNumber.$error" ng-if="form.contactNumber.$touched">
+					<p ng-message="required">Please enter Contact Number.</p>
+					<p ng-message="pattern">Please enter valid Contact Number.</p>
+				</div>
+			</div>
+		</div>	
+	</div>
+	
+	<div class="horizontal-line"></div>
+	
+	<div class="row">
+		<p class="center" ng-class="{ 'has-error': form.tc.$touched && form.tc.$invalid }">
+			<label><input type="checkbox" name="tc" ng-model="user.tc" required=""> I agree to <a href=""><u>Terms & Conditions</u></a></label>
+				<p class="msg-error">{{tcMessage}}</p>
+		</p>
+	</div>
+	
+	<div class="row">
+		<p class="msg-error center" ng-repeat = "error in errors">{{error}}</p>
+		<p class="center"> 
+		<input type="submit" class="btn btn-primary" title="Please review all the fields marked with * are mandatory." ng-disabled="form.$invalid" 
+		value="Register as an Institute"></input>
+		</p>
+	</div>
+	<div class="row" align="center">
+	<span class="msg-error"> <b>Fields marked with * are mandatory. Please review all the fields if "Register as an Institute" button is disabled. </b></span>
+	</div>
+</form>
+	<div class="clear"></div>
+	
+	<div class="devider clear"></div>
+	<div class="footer-links">
+	<img src="images/midasblue-logo.png" alt="" class="footer-logo">
+		<ul>
+			<li><a href="#.">Home</a></li>
+			<li><a href="#.">About Us </a></li>
+			<li><a href="#.">Portfolio</a></li>
+			<li><a href="#.">Services</a></li>
+			<li><a href="#.">Contact Us</a></li>
+		</ul>
+	</div>
+</div>
+

@@ -1,0 +1,33 @@
+
+<div class="section">
+    <div class="loading-spiner-holder" data-loading ></div>
+    <div class="left-section left-section-inner">
+
+
+        <ul class="nav-tabs nav-justified">
+            <li><a href="" ng-click="showStudent = true;showOrg = false;showInstitute = false">Search Student</a></li>
+            <li><a href="" ng-click="showOrg = true;showStudent = false;showInstitute = false">Search Organization</a></li>
+            <li><a href="" ng-click="showInstitute = true;showStudent = false;showOrg = false">Search Institute</a></li>
+        </ul>
+
+
+        <p></p>
+
+        <div ng-show="showStudent">
+            <div ng-include src="'templates/org-search-students.html'"></div>
+        </div>
+        <div ng-show="showOrg">
+            <div ng-include src="'templates/inst-search-org.html'"></div>
+        </div>
+        <div ng-show="showInstitute">
+            <div ng-include src="'templates/org-search-institutes.html'"></div>
+        </div>
+
+
+    </div>
+
+    <ng-include src="'templates/right-menu.html'"></ng-include>	
+
+    <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

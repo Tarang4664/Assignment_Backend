@@ -1,0 +1,54 @@
+
+<div class="section">
+	<div class="left-section left-section-inner">
+	
+		<div align="center">
+<input type="radio" name="searchType" value="searchType"  ng-click="showForm=true;showForm1=false" style="width: 2em; height: 1em;"><label>Profile Search</label>&nbsp;&nbsp;
+<input type="radio" name="searchType" value="searchType"  ng-click="showForm1=true;showForm=false" style="width: 2em; height: 1em;"><label>Opportunity Search</label>
+</div><p></p>
+
+<div ng-show="showForm">
+   <ul class="nav-tabs nav-justified">
+    <li><a href="" ng-click="showStudent=true;showMentor=false;showInstitute=false">Search Student</a></li>
+    <li><a href="" ng-click="showMentor=true;showStudent=false;showInstitute=false">Search Mentor</a></li>
+	<li><a href="" ng-click="showInstitute=true;showStudent=false;showMentor=false">Search Institute</a></li>
+  </ul>
+ 
+
+<p></p>
+
+<div ng-show="showStudent">
+<div ng-include src="'templates/org-search-students.html'"></div>
+</div>
+<div ng-show="showMentor">
+<div ng-include src="'templates/org-search-mentor.html'"></div>
+</div>
+<div ng-show="showInstitute">
+<div ng-include src="'templates/org-search-institutes.html'"></div>
+</div>
+	
+</div>	
+<div ng-show="showForm1">
+  <ul class="nav-tabs nav-justified">
+    <li><a href="" ng-click="showEvent=true;showMentorship=false;showMentee=false">Event Sponsorship</a></li>
+    <li><a href="" ng-click="showMentorship=true;showEvent=false;showMentee=false">Mentorship</a></li>
+  </ul>
+ <div ng-show="showEvent">
+ <div ng-include src="'templates/org-search-event.html'"></div>
+</div>
+ <div ng-show="showMentorship">
+ <div ng-include src="'templates/stud-search-mentor-opp.html'"></div>
+</div>
+
+</div>
+<p></p>
+
+
+
+</div>
+	
+	 <ng-include src="'templates/right-menu.html'"></ng-include>	
+	
+	<ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

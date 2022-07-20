@@ -1,0 +1,290 @@
+<div>
+    <div class="loading-spiner-holder" data-loading ></div>
+    <div>
+        <h4 class="inner-head">Job Opportunity</h4>
+    </div>
+
+    <p></p>
+    <div class="search-form">
+        <form name="form" id="form">
+            <!--<div ng-include src="'templates/part.html'"></div>-->
+            <div align="right">
+                <button type="reset" value="Reset" ng-click="clearAll();">Clear All</button></div><p></p>
+
+            <label>*Position Name:</label>
+            <div  ng-class="{
+                    'has-error'
+                            : form.positionName.$touched && form.positionName.$invalid}">	
+
+                <input type="text" name="positionName"  ng-model='$parent.summary' class="form-control" placeholder="Enter Postion Name" required="" autofocus>
+                <div class="help-block" ng-messages="form.positionName.$error" ng-if="form.positionName.$touched">
+                    <p ng-message="required">This field is required!</p>
+                </div>
+            </div>
+
+
+
+
+
+            <label>*No. Of Positions:</label>
+            <div ng-class="{
+                    'has-error'
+                    : form.noOfPositions.$touched && form.noOfPositions.$invalid}">
+                <select class="form-control" name="noOfPositions" ng-model='$parent.noOfPositions' required>
+                    <option selected="selected" value="-1" disabled selected>- Select a No. -</option>
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+                    <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                    <option value="10+">10+</option>
+                </select>
+                <div class="help-block" ng-messages="form.noOfPositions.$error" ng-if="form.noOfPositions.$touched">
+                    <p ng-message="required">Select Number Of Positions</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col-md-6"><div class="col-md-3"><label>Monthly Budget:</label></div>
+                    <div class="col-md-9" ng-class="{
+                    'has-error'
+                            : form.budget.$touched &&  form.budget.$invalid}">
+                        <input type="number" name="budget" ng-model='$parent.budget'  class="form-control" placeholder="" >
+
+                    </div>
+
+                </div>
+                <div class="col-md-6"><div class="col-md-4"><label>Currency:</label></div>
+                    <div class="col-md-8" ng-class="{
+                    'has-error': form.currency.$touched && form.currency.$invalid}">
+                        <select class="form-control" placeholder="Currency" name="currency" title="Currency" ng-model='$parent.currency' ng-required="$parent.budget">
+                            <option selected="selected" value="-1" disabled selected>- Choose Currency -</option>
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <div class="help-block" ng-messages="form.currency.$error" ng-if="form.currency.$touched">
+                            <p ng-message="required">Select Currency As You Have Entered Budget</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <p></p>
+
+
+
+            <label>*Keyskills:</label> 
+            <div  ng-class="{
+                    'has-error'
+                    : skillMessage}"><selectize config='skillConfig' options='skillOptions' ng-model="$parent.keySkills"></selectize>
+
+
+                <p ng-show="skillMessage" class="help-block">{{skillMessage}}</p>
+
+            </div>
+
+            <!--<p class="help-block">{{skillMessage}}</p>-->
+            <p></p>
+
+
+            <label>*Job Location(s):</label>
+            <div  ng-class="{
+                    'has-error': locationMessage}">
+                <selectize name="jobLocation" config='locationConfig' options='locationOptions' ng-model="$parent.jobLocation"></selectize><p><p>
+
+
+                <p  ng-show="locationMessage" class="help-block">{{locationMessage}}</p>
+            </div>
+
+            <div class="field-separator"></div>
+
+            <p></p>
+            <div>
+                <h4 class="inner-head">Eligibility Criteria</h4>
+
+                <b>*Add Qualification</b>
+                <div>
+                    <div  ng-class="{
+                            'has-error'
+                            : majorMessage}">
+                        <selectize name="major" config='majorConfig' options='majorOptions' ng-model='$parent.major'></selectize>
+                        <p ng-show="majorMessage" class="help-block">{{majorMessage}}</p>
+                    </div>
+                    <div  ng-class="{
+                            'has-error': courseMessage}">
+                        <selectize name="course" config='courseConfig' options='courseOptions' ng-model='$parent.course'></selectize>
+                        <p ng-show="courseMessage" class="help-block">{{courseMessage}}</p>
+                    </div>
+                    <div  ng-class="{
+                            'has-error'
+                            : streamMessage}">
+                        <selectize name="stream" config='streamConfig' options='streamOptions' ng-model='$parent.stream'></selectize>
+                        <p ng-show="streamMessage" class="help-block">{{streamMessage}}</p>
+                    </div>
+                    <input type="number" name="yop" class="form-control" placeholder="Enter Year of Passing" ng-model='$parent.yop'>
+                    <p>
+                    <div class="row">
+                        <div class="col-md-6" ng-class="{ 'has-error': form.cgpaMin.$touched && form.cgpaMin.$invalid}">
+                            <input type="number" class="form-control" ng-model='$parent.cgpaMin' placeholder="Min.CGPA" name="cgpaMin" pattern="(10|[1-9])">
+                            <div class="help-block" ng-messages="form.cgpaMin.$error" ng-if="form.cgpaMin.$touched">
+                                <!--<p ng-message="minlength">Password must contain 8 characters.</p>-->
+                                <!--<p ng-message="required">Password is required.</p>-->
+                                <P ng-message="pattern">Enter Valid CGPA.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6" ng-class="{ 'has-error': form.perMin.$touched && form.perMin.$invalid}">
+                            <input type="number" class="form-control" ng-model='$parent.percentageMin' placeholder="Min Percentage" name="perMin" pattern="(100|[1-9][0-9])">
+                            <div class="help-block" ng-messages="form.perMin.$error" ng-if="form.perMin.$touched">
+                                <!--<p ng-message="minlength">Password must contain 8 characters.</p>-->
+                                <!--<p ng-message="required">Password is required.</p>-->
+                                <P ng-message="pattern">Enter Valid Percentage.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<a href=""><img class="add right" src="images/remove.png" ng-click="showBlock = false"/></a>Remove <a href=""><img class="add right" src="images/add.png" ng-click="showBlock1 = true"/></a>Add-->
+                    <p></p>
+
+                </div><p></p>
+                <!--<div class="field-separator"></div><p><p>-->
+
+
+
+                <label>Experience</label>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <div class="col-md-3"><label>*Min.:</label></div>
+                        <div class="col-md-9" ng-class="{
+                            'has-error'
+                                    : form.minExp.$touched && form.minExp.$invalid}"><select class=" form-control" name="minExp" ng-model='$parent.minExperience' required>
+                                <option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+                                <option value="0">0 year</option><option value="1">1 year</option><option value="2">2 years</option>
+                                <option value="3">3 years</option><option value="4">4 years</option><option value="5">5 years</option>
+                                <option value="6">6 years</option><option value="7">7 years</option><option value="8">8 years</option>
+                                <option value="9">9 years</option><option value="10">10 years</option><option value="15">15 years</option>
+                                <option value="20">20 years</option><option value="25">25 years</option>
+                            </select>
+                            <div class="help-block" ng-messages="form.minExp.$error" ng-if="form.minExp.$touched">
+                                <p ng-message="required">Select Min Experience</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3"><label>*Max.:</label></div>
+                        <div class="col-md-9" ng-class="{
+                            'has-error'
+                            : form.maxExp.$touched && form.maxExp.$invalid}"><select class="form-control"  name="maxExp" ng-model='$parent.maxExperience' required>
+                                <option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+                                <option value="0">0 year</option><option value="1">1 year</option><option value="2">2 years</option>
+                                <option value="3">3 years</option><option value="4">4 years</option><option value="5">5 years</option>
+                                <option value="6">6 years</option><option value="7">7 years</option><option value="8">8 years</option>
+                                <option value="9">9 years</option><option value="10">10 years</option><option value="15">15 years</option>
+                                <option value="20">20 years</option><option value="25">25 years</option>
+                            </select>
+                            <div class="help-block" ng-messages="form.maxExp.$error" ng-if="form.maxExp.$touched">
+                                <p ng-message="required">Select Max Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p></p>
+
+
+                <div class="field-separator"></div><p><p>
+                <p></p>
+                <div>
+                    <label>*Opportunity Description:</label>
+                    <div  ng-class="{
+                            'has-error': form.jobDescription.$touched &&  form.jobDescription.$invalid}">
+                        <textarea class= "form-control" name="jobDescription" rows="3" maxlength="7000" ng-model="$parent.opportunityDescription" placeholder="Enter Job Description (characters limit is 1000)" required=""></textarea>
+                        <div class="help-block" ng-messages="form.jobDescription.$error" ng-if="form.jobDescription.$touched">
+                            <p ng-message="required">This field is required!</p>
+                        </div>
+                    </div>								
+                </div>			
+                <p></p>
+                <div class="form-" ng-show="type === 'internship' || type === 'research'">
+                    <label>Duration</label>
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="col-md-3"> <label>*Start:</label></div>
+
+
+                            <div class="col-md-9"  ng-class="{
+                                    'has-error'
+                                    : startDateMessage && startDate===undefined}">
+                                <p class="input-group">
+
+                                    <input type="text" name="startDate" ng-model='$parent.startDate' class="form-control" uib-datepicker-popup="{{format}}" readonly="readonly" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+
+                                <p class="help-block" ng-show="startDateMessage && startDate === undefined" >Start Date is Required!</p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="col-md-3"> <label>*End:</label></div>
+
+                            <div class="col-md-9" ng-class="{
+                                    'has-error'
+                                            :endDateMessage && endDate===undefined}">
+                                <p class="input-group">
+                                    <input type="text" name="endDate" ng-model='$parent.endDate' readonly="readonly" class="form-control" uib-datepicker-popup="{{format}}"  is-open="popup2.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-change="validateEnd()"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+
+                                <p class="help-block" ng-show="endDateMessage && endDate === undefined" >{{endDateMessage}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div><p></p>
+                <div>
+                    <label>Selection Process:</label>
+                    <textarea class= "form-control" name="selectionProcess" maxlength="1000" ng-model="$parent.selectionProcess" rows="3" placeholder=" Enter selection process details (characters limit is 1000)"></textarea>
+                </div>
+                <p></p>
+                <div class="form-inline">
+                    <div class="row">  <div class="col-md-9">  <div class="col-md-5"> <label>Last Date To Apply:</label></div>
+
+                            <div class="col-md-7">
+
+                                <p class="input-group">
+                                    <input type="text" name="endDate" ng-model='$parent.lastDateToApply' readonly="readonly" class="form-control" uib-datepicker-popup="{{format}}"  is-open="popup3.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <p></p>
+                <div class="field-separator"></div><p></p>
+            </div>
+
+
+
+            <div class="form-footer">
+                <input type="submit" class="btn btn-primary" value="Post Opportunity" ng-disabled="form.$invalid" ng-click="postJob();"> <!--ng-disabled="form.$invalid"-->
+                <!--<i class="fa fa-upload"></i>-->
+
+            </div>	<p></p>	
+        </form>
+    </div>
+
+
+</div>

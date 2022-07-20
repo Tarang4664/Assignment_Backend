@@ -1,0 +1,145 @@
+<!--<div class="banner inner-banner">
+	<h2 class="inner-head">organisations</h2>
+	<img src="images/inner-banner.png" class="box-shadow" alt="">
+</div>-->
+
+<div class="section" ng-controller="OrgSearchController">
+    <div class="loading-spiner-holder" data-loading ></div>
+	<form name="form" ng-submit="postOpportunity(form.$valid)" role="form"> 
+	<div class="left-section left-section-inner">
+	<!--ng-submit="submitOrganizationForm(form.$valid)" --> 
+		<div>
+			<h4 class="inner-head"><b>Look for Mentor</b></h4>
+		</div>
+		<!-- 3 types of post opportunities for organisation-->
+		<!--<ul id="tab_ul" class="tabs">
+			<li ng-repeat="postOpt in postOpts" >
+			<a  href="{{postOpt.template}}">{{postOpt.title}}</a></li>	
+		</ul>-->
+		<p></p>
+		<div class="search-form">
+			
+						
+				<label>*Summary:</label>
+				<div ng-class="{ 'has-error': form.positionName.$touched && form.positionName.$invalid}">
+					<textarea class= "form-control" name="jobDescription" rows="5" cols="2" ng-model="opp.jobDescription" placeholder="Enter Summary" required=""></textarea>
+					<div class="help-block" ng-messages="form.positionName.$error" ng-if="form.positionName.$touched">
+						<p ng-message="required">This field is required!</p>
+					</div>
+				</div>
+			
+			<p></p>
+				
+				<label>*Opportunity Description:</label>
+				<div ng-class="{ 'has-error': form.positionName.$touched && form.positionName.$invalid}">
+					<textarea class= "form-control" name="jobDescription" rows="5" cols="2" ng-model="opp.jobDescription" placeholder="Enter Summary" required=""></textarea>
+					<div class="help-block" ng-messages="form.positionName.$error" ng-if="form.positionName.$touched">
+						<p ng-message="required">This field is required!</p>
+					</div>
+				</div>
+				<p></p>
+					
+			<div>
+				<label>*Keyskill(s):</label>
+				<dropdown-multiselect class="btn-alignment" placeholder="Skills" model="selectedSkills" options="keySkills" required=""></dropdown-multiselect>
+			</div><p></p>
+			
+			<div ng-controller="dropdownController">
+									<label>Domain Interest:</label>
+									
+						    
+							<dropdown-multiselect class="btn-alignment"  placeholder="IT Domains" model="selectedItDomains " options="itDomains"></dropdown-multiselect>
+							<dropdown-multiselect class="btn-alignment"  placeholder="Non-IT Domains" model="selectedNonItDomains " options="nonItDomains"></dropdown-multiselect>
+							</div><p></p>
+							
+			<div ng-controller="dropdownController">
+									<label>Functional Interest:</label>
+								<dropdown-multiselect class="btn-alignment" name="functionInterest" model="selectedfunctionInterests" placeholder="Select IT Functions" options="functionInterests"></dropdown-multiselect>
+							</div><p></p>
+			<div class="field-separator"></div>
+			
+			<p></p>
+			<div>
+				<h5 class="inner-head">Mentee Eligibility Criteria</h5>
+				
+				
+				
+					<div ng-controller="dropdownController">
+								<label>UG Details:</label>
+									<dropdown-multiselect class="btn-alignment" model="selectedMajors" placeholder="Major" options="majors"></dropdown-multiselect>
+									<dropdown-multiselect class="btn-alignment" model="selectedUGcourses" placeholder="Course" options="UGcourses"></dropdown-multiselect><p></p>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<dropdown-multiselect class="btn-alignment"  placeholder="Stream" model="selectedUgStreams " options="ugStreams"></dropdown-multiselect>
+									<dropdown-multiselect class="btn-alignment" model="selectedUGcourses" placeholder="Year Of Passing" options="UGcourses"></dropdown-multiselect>
+											<p></p>
+										
+								</div>
+											
+							
+							
+								<p></p>	
+							<div class="field-separator"></div>
+							<p></p>
+															
+											
+								<div ng-controller="dropdownController">
+								<label>PG Details:</label>
+										<dropdown-multiselect class="btn-alignment" model="selectedMajors" placeholder="Major" options="majors"></dropdown-multiselect>
+								
+										<dropdown-multiselect  class="btn-alignment" model="selectedUGcourses" placeholder="Course" options="UGcourses"></dropdown-multiselect><p></p>
+										&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<dropdown-multiselect class="btn-alignment"  placeholder="Stream" model="selectedPgStreams " options="pgStreams"></dropdown-multiselect>
+										<dropdown-multiselect  class="btn-alignment" model="selectedUGcourses" placeholder="Year of Passing" options="UGcourses"></dropdown-multiselect>
+								</div>
+									<p></p>
+							<div>
+					
+					<div><label>Institute Type:</label> &nbsp; &nbsp;
+							
+							<input type="checkbox" name="score" value="Paid"> IITs &nbsp;
+							<input type="checkbox" name="score" value="Free"> NITs &nbsp;
+							<input type="checkbox" name="score" value="Paid"> Deemed Universities<p></p>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="score" value="Paid"> Autonomous &nbsp;
+							<input type="checkbox" name="score" value="Paid"> Others</div>
+							<p></p>
+					
+					<label>Minimum Experience: &nbsp;<select class="form-inline form-control-static" name="minExp" ng-model="opp.minExp"></label>
+						<option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+						<option value="0 year">0 year</option><option value="1 year">1 year</option><option value="2 years">2 years</option>
+						<option value="3 years">3 years</option><option value="4 years">4 years</option><option value="5 years">5 years</option>
+						<option value="6 years">6 years</option><option value="7 years">7 years</option><option value="8 years">8 years</option>
+						<option value="9 years">9 years</option><option value="10 years">10 years</option><option value="10+ years">10+ years</option>
+					</select>
+					
+					<p></p>
+					<label>Maximum Experience:&nbsp;<select class="form-inline form-control-static" name="maxExp" ng-model="opp.maxExp"></label>
+						<option selected="selected" value="-1" disabled selected>- Select Experience -</option>
+						<option value="0 year">0 year</option><option value="1 year">1 year</option><option value="2 years">2 years</option>
+						<option value="3 years">3 years</option><option value="4 years">4 years</option><option value="5 years">5 years</option>
+						<option value="6 years">6 years</option><option value="7 years">7 years</option><option value="8 years">8 years</option>
+						<option value="9 years">9 years</option><option value="10 years">10 years</option><option value="10+ years">10+ years</option>
+					</select>
+					
+					
+				</div>
+				<div class="field-separator"></div><p></p>
+				
+			<!--<div class="field-separator"></div>-->
+			</div>
+			
+		
+		
+		
+			<div class="form-footer">
+					<input type="submit" class="btn btn-primary"  value="Post Opportunity" ng-disabled="form.$invalid" ng-click="postOpportunity()">
+						<!--<i class="fa fa-upload"></i>-->
+					</input>
+			</div>	<p></p>				
+	</div>
+		
+	</div>		
+	</form>
+
+	 <ng-include src="'templates/right-menu.html'"></ng-include>		<div class="clear"></div>
+	<ng-include src="'templates/footer.html'"></ng-include>
+</div>
+

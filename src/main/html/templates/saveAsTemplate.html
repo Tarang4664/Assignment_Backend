@@ -1,0 +1,91 @@
+<div ng-controller="EmailTemplateController">
+    <div class="loading-spiner-holder" data-loading ></div>
+
+    <div class="section">
+
+       
+            <div class="left-section left-section-inner">
+                 <form name="form" class="form-horizontal" role="form" ng-submit="saveTemplate()">
+                <div class="search-form">
+                    
+                    <h2 class="center inner-head">Save As Template</h2>
+
+                    <div class="row">
+                        <div class="center">
+                            <div class="col-md-3"><label>*Template Name:</label></div>
+
+                            <div class="col-md-7"><input type="text" class="form-control" name="templateName" ng-model="editTemplate.positionName" placeholder="Enter template name" value="" required=""></div>
+                            <div ng-show="form.$submitted || form.editTemplate.positionName.$touched">
+                                <span class="field-alert" ng-show="form.editTemplate.positionName.$error.required">
+                                    <p align="right">This field is required</p>
+                                </span>
+                            </div>
+                        </div> 
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="center">
+                            <div class="col-md-3"><label>*From:</label></div>
+                            <div class="col-md-7"><input type="email" name="senderEmail" class="form-control" ng-model="editTemplate.senderEmail" placeholder="Enter your email id" value="" required=""></div>
+                            <div ng-show="form.$submitted || form.editTemplate.senderEmail.$touched">
+                                <span class="field-alert" ng-show="form.editTemplate.senderEmail.$error.required">
+                                    <p align="right">This field is required</p>
+                                </span>
+                                <span class="field-alert" ng-show="form.editTemplate.senderEmail.$error.email">
+                                    <p align="right">This not a valid email.</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="center">
+                            <div class="col-md-3"><label>*Subject:</label></div>
+                            <div class="col-md-7"><input type="text" name="subject" class="form-control" ng-model="editTemplate.subject" placeholder="Add subject" value="" required=""></div>
+                            <div ng-show="form.$submitted || form.editTemplate.subject.$touched">
+                                <span class="field-alert" ng-show="form.editTemplate.subject.$error.required">
+                                    <p align="right">This field is required</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="center"><div class="col-md-3"><label>*Email Body:</label></div>
+                            <div class="col-md-7">
+                                <textarea name="emailBody" placeholder="Body" class="form-control col-md-7" ng-model="editTemplate.jobDescription" style="height:200px;" value="" required=""></textarea> 
+                                <div ng-show="form.$submitted || form.editTemplate.jobDescription.$touched">
+
+                                    <p align="right" ng-show="form.editTemplate.jobDescription.$error.required">This field is required</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<br>
+                    <div class="row">
+                        <div class="center">
+                            <div class="col-md-3"><label>*Signature:</label></div>
+                            <div class="col-md-7"> <textarea name="signature" placeholder="Signature" class="form-control " ng-model="editTemplate.signature"  value="" required=""></textarea>
+                                <div ng-show="form.$submitted || form.editTemplate.signature.$touched">
+                                    <span class="field-alert" ng-show="form.editTemplate.signature.$error.required">
+                                        <p align="right"> This field is required </p>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+<br>
+                    <div class="row">
+                        <p class="center"> <button type="button"  ng-disabled="form.$invalid"  class="btn btn-primary btn-md" ng-click="saveTemplate(); getTemplate()" role="button"><i class="fa fa-save"></i> Save</button>
+                            <button class="btn btn-danger btn-md" role="button" ng-click="clicked()">Cancel</button></p>
+
+                    </div>
+                </div>
+        </form>
+    </div>
+    <ng-include src="'templates/right-menu.html'"></ng-include>	
+    <ng-include src="'templates/footer.html'"></ng-include>
+</div>
+</div>
